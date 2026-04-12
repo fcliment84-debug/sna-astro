@@ -15,7 +15,7 @@ export interface MegaMenuPill {
 
 export const metodologiaData = {
   hero: {
-    image: "/src/assets/metodologia/metodologia-hero-bg.webp",
+    image: "/images/metodologia-hero-bg.webp",
     headline: "Nuestra metodología garantiza resultados técnicos predecibles.",
     headlineEn: "Our methodology ensures predictable technical results.",
     cta: {
@@ -30,7 +30,7 @@ export const metodologiaData = {
       titleEn: "Advanced diagnosis",
       description: "Medición de campo, análisis modal y mapeo acústico 3D.",
       descriptionEn: "Field measurement, modal analysis and 3D acoustic mapping.",
-      image: "/src/assets/metodologia/camara-acustica-sna.webp",
+      image: "/images/camara-acustica-sna.webp",
       href: "/metodologia/diagnostico",
     },
     {
@@ -38,7 +38,7 @@ export const metodologiaData = {
       titleEn: "Applied innovation",
       description: "Simulación FEM/BEM, prototipado y validación experimental.",
       descriptionEn: "FEM/BEM simulation, prototyping and experimental validation.",
-      image: "/src/assets/metodologia/innovacion-aplicada.webp",
+      image: "/images/innovacion-aplicada.webp",
       href: "/metodologia/diseno",
     },
   ] as MegaMenuCard[],
@@ -47,7 +47,7 @@ export const metodologiaData = {
     titleEn: "Technical capability",
     description: "Fabricación propia y ejecución con responsabilidad técnica completa.",
     descriptionEn: "In-house manufacturing and execution with full technical responsibility.",
-    image: "/src/assets/metodologia/capacidad-tecnica.webp",
+    image: "/images/capacidad-tecnica.webp",
     href: "/metodologia/ejecucion",
   } as MegaMenuCard,
   pills: [
@@ -59,7 +59,7 @@ export const metodologiaData = {
 
 export const proyectosData = {
   hero: {
-    image: "/src/assets/hero/pilares-hero.webp",
+    image: "/images/pilares-hero.webp",
     headline: "Más de 25 años resolviendo problemas acústicos complejos.",
     headlineEn: "Over 25 years solving complex acoustic problems.",
     cta: {
