@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import InteriorHero from "../../../components/interior/InteriorHero.astro";
+import InteriorCTA from "../../../components/interior/InteriorCTA.astro";
+import EditorialBlock from "../../../components/interior/EditorialBlock.astro";
+import SectorCapacidades from "../../../components/sector/SectorCapacidades.astro";
+import SectorProyectos from "../../../components/sector/SectorProyectos.astro";
+import SectorNormativa from "../../../components/sector/SectorNormativa.astro";
+import { breadcrumbSchema, serviceSchema } from "../../../data/schemas";
+
+const lang = "en";
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: "Home", url: "/en" },
+    { name: "Projects", url: "/en/projects" },
+    { name: "Industrial acoustics" },
+  ]),
+  serviceSchema({
+    name: "Industrial acoustics",
+    description: "Diagnosis, design and implementation of acoustic solutions in industrial environments. Machinery insulation, vibration control, acoustic cabins and monitoring.",
+    url: "/en/projects/industrial-acoustics",
+    capabilities: [
+      "Industrial acoustic diagnosis",
+      "Machinery insulation and encapsulation",
+      "Industrial acoustic cabins",
+      "Vibration control",
+      "Industrial silencers",
+      "Acoustic screens",
+      "Real-time acoustic monitoring",
+      "Predictive acoustic maintenance",
+    ],
+  }),
+];
+
+const capacidades = [
+  { title: "Industrial acoustic diagnosis", description: "Measurement of occupational noise exposure levels in accordance with RD 286/2006. Spectral characterisation of sources and environments. Source localisation using acoustic camera (beamforming). Structural vibration analysis and mechanical transmission." },
+  { title: "Machinery insulation and encapsulation", description: "Design and manufacture of acoustic enclosures for industrial machinery: total or partial encapsulations, modular systems with operational access, integrated forced ventilation." },
+  { title: "Industrial acoustic cabins", description: "Design, manufacture and installation of cabins for operators or for the insulation of specific equipment." },
+  { title: "Vibration control", description: "Design of vibratory decoupling systems: anti-vibration platforms, elastic supports, flexible joints in piping." },
+  { title: "Industrial acoustic silencers", description: "Design and manufacture of reactive and dissipative silencers for airflows, exhaust gases, and industrial ventilation ducts." },
+  { title: "Industrial acoustic barriers", description: "Acoustic barrier systems for the protection of work areas or adjacent buildings from external industrial noise sources." },
+  { title: "Real-time noise monitoring", description: "Continuous monitoring systems for environments where the temporal variability of noise makes spot measurements insufficient." },
+  { title: "Acoustic predictive maintenance", description: "Acoustic and vibration analysis of machinery can detect changes in mechanical behaviour before they manifest as failures." },
+];
+---
+
+<BaseLayout
+  title="Industrial Acoustics | SNA — Acoustic engineering for production environments"
+  description="Diagnosis, design and implementation of acoustic solutions in industrial environments. Machinery insulation, vibration control, acoustic cabins and monitoring."
+  canonical="https://snaconsultoriaacustica.com/en/projects/industrial-acoustics/"
+  lang="en"
+  jsonLd={jsonLd}
+>
+  <InteriorHero
+    bgImage="/images/acustica-industrial.webp"
+    breadcrumbs={[{ label: "Home", href: "/en" }, { label: "Projects", href: "/en/projects" }, { label: "Industrial acoustics" }]}
+    title="Industrial acoustics: noise as an engineering problem."
+    subtitle="In production environments, noise is not merely a regulatory issue. It is a complex technical problem with multiple sources, transmission paths, and operational constraints. We approach it as such."
+    lang={lang}
+  >
+    <div class="mt-8">
+      <a href="#proyectos-sector" class="group inline-flex items-center justify-center border border-white text-white px-8 py-4 text-base font-medium rounded-none hover:border-sna-accent hover:text-sna-accent transition-all duration-200">
+        <span class="transition-transform duration-200 group-hover:-translate-x-1">View industrial projects</span>
+        <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&rarr;</span>
+      </a>
+    </div>
+  </InteriorHero>
+
+  <EditorialBlock title="Beyond compliance assessment.">
+    <p>Noise in the industrial environment has precise technical causes: high-power machinery, vibration transmission to the structure, fluid dynamics in installations, and mechanical interactions between systems. Correctly identifying these causes — with rigour and without simplifications — is the starting point for any effective intervention.</p>
+    <p>At SNA we do not arrive at an industrial project with a catalogue of solutions. We arrive with the technical capability to understand the problem: characterise the acoustic field, locate sources with precision, analyse the relevant frequency spectrum, and model the environment's behaviour before proposing anything.</p>
+    <p>The result is a technically sound solution, dimensioned for the real problem and verifiable before execution.</p>
+  </EditorialBlock>
+
+  <SectorCapacidades heading="What we do in industrial acoustics." capacidades={capacidades} />
+  <SectorProyectos heading="Representative industrial projects." sectorFilter="Industrial" lang={lang} />
+
+  <SectorNormativa heading="Regulations governing noise in the workplace.">
+    <p>The reference regulatory framework for the protection of workers against noise is Royal Decree 286/2006, of 10 March, on the protection of the health and safety of workers from risks related to noise exposure.</p>
+    <p>Compliance with this decree involves, among other actions, carrying out acoustic measurements at workstations, identifying exposed workers, planning technical and organisational measures, and monitoring their effectiveness.</p>
+    <p>SNA carries out noise exposure assessments in accordance with RD 286/2006 and identifies the most appropriate control measures for each case.</p>
+  </SectorNormativa>
+
+  <InteriorCTA title="Do you have an industrial noise problem that requires a serious technical diagnosis?" buttonLabel="Submit a technical case" lang={lang} />
+</BaseLayout>

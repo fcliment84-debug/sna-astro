@@ -1,0 +1,76 @@
+---
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+export interface Props {
+  breadcrumbs: BreadcrumbItem[];
+  title: string;
+  subtitle?: string;
+  compact?: boolean;
+  bgImage?: string;
+  bgPosition?: string;
+  lang?: "es" | "en";
+}
+
+const {
+  breadcrumbs,
+  title,
+  subtitle,
+  compact = false,
+  bgImage,
+  bgPosition,
+  lang = "es",
+} = Astro.props;
+
+import { localePath } from "../../data/navigation";
+---
+
+<section
+  class:list={[
+    "relative bg-sna-dark border-b border-white/10 overflow-hidden",
+    compact
+      ? "pt-24 pb-12 lg:pt-28 lg:pb-14"
+      : "pt-28 pb-20 lg:pt-36 lg:pb-28 min-h-[520px] lg:min-h-[600px] flex items-end",
+  ]}
+>
+  {bgImage && (
+    <img
+      src={bgImage}
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full object-cover opacity-40"
+      style={bgPosition ? `object-position: ${bgPosition}` : undefined}
+    />
+  )}
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+    <nav aria-label="Breadcrumb" class="mb-6">
+      <ol class="flex items-center gap-1.5 text-sm font-medium text-white/50">
+        {breadcrumbs.map((crumb, i) => (
+          <li class="flex items-center gap-1.5">
+            {i > 0 && <span class="select-none">/</span>}
+            {crumb.href ? (
+              <a href={localePath(crumb.href, lang)} class="hover:text-white/80 transition-colors">
+                {crumb.label}
+              </a>
+            ) : (
+              <span>{crumb.label}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <h1 class="text-4xl lg:text-5xl font-semibold max-w-[800px] text-white">
+      {title}
+    </h1>
+    {subtitle && (
+      <p class="mt-6 text-lg text-white/70 max-w-[700px] leading-relaxed">
+        {subtitle}
+      </p>
+    )}
+    <slot />
+  </div>
+</section>

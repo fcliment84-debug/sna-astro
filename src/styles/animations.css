@@ -1,0 +1,45 @@
+/* ── Fade-in on scroll ── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 200ms ease-out both;
+}
+
+/* ── Intersection Observer trigger class ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Hover zoom for images ── */
+.hover-zoom {
+  transition: transform 300ms ease;
+}
+
+.hover-zoom:hover {
+  transform: scale(1.05);
+}
+
+/* ── Arrow slide on hover ── */
+.arrow-slide {
+  transition: transform 200ms ease;
+}
+
+.group:hover .arrow-slide {
+  transform: translateX(4px);
+}

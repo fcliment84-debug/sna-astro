@@ -1,0 +1,49 @@
+---
+import { Image } from "astro:assets";
+import criterioPropioImg from "../../assets/hero/criterio-propio.webp";
+
+export interface Props {
+  lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
+
+const texts = {
+  es: {
+    heading: "Ingeniería acústica con criterio propio.",
+    p1: "SNA nació con la convicción de que la ingeniería acústica puede —y debe— ir más allá del cumplimiento de normas. En más de veinticinco años de trabajo hemos desarrollado una metodología propia, basada en el diagnóstico en profundidad, el diseño a medida y la fabricación y ejecución con responsabilidad técnica completa.",
+    p2: 'Somos una empresa certificada como PYME Innovadora, con un producto patentado —<span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>— desarrollado en respuesta a un problema técnico concreto que el mercado no resolvía: el aislamiento eficaz de bajas frecuencias con paso de aire.',
+    p3: "Nuestro equipo combina formación en ingeniería acústica, mecánica y civil con experiencia acumulada en proyectos industriales, de edificación y medioambientales. No aplicamos soluciones de catálogo. Diseñamos la respuesta al problema específico de cada proyecto.",
+    imgAlt: "Ingeniero trabajando en proyecto de acústica industrial",
+  },
+  en: {
+    heading: "Acoustic engineering with independent judgement.",
+    p1: "SNA was founded with the conviction that acoustic engineering can — and must — go beyond mere regulatory compliance. Over more than twenty-five years we have developed our own methodology, based on in-depth diagnosis, bespoke design and manufacturing and execution with full technical responsibility.",
+    p2: 'We are certified as an Innovative SME, with a patented product — <span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span> — developed in response to a specific technical problem that the market could not solve: effective low-frequency sound insulation with airflow.',
+    p3: "Our team combines training in acoustic, mechanical and civil engineering with accumulated experience in industrial, building and environmental projects. We do not apply catalogue solutions. We design the answer to each project's specific problem.",
+    imgAlt: "Engineer working on an industrial acoustics project",
+  },
+};
+
+const t = texts[lang];
+
+const boltClip = "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)";
+---
+
+<section class="py-16 lg:py-20" aria-labelledby="propuesta-heading">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-3">
+      <div class="lg:col-span-7 flex flex-col justify-center p-8 lg:p-10">
+        <h2 id="propuesta-heading" class="text-2xl lg:text-3xl font-semibold mb-8 leading-snug">{t.heading}</h2>
+        <div class="space-y-5 text-sm lg:text-base leading-relaxed text-foreground/80">
+          <p>{t.p1}</p>
+          <p set:html={t.p2} />
+          <p>{t.p3}</p>
+        </div>
+      </div>
+      <div class="lg:col-span-5 relative overflow-hidden min-h-[320px] lg:min-h-0" style={`clip-path: ${boltClip}`}>
+        <Image src={criterioPropioImg} alt={t.imgAlt} class="w-full h-full object-cover absolute inset-0" width={800} height={600} loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>

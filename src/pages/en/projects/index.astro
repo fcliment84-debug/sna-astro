@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import InteriorHero from "../../../components/interior/InteriorHero.astro";
+import InteriorCTA from "../../../components/interior/InteriorCTA.astro";
+import ProjectFilter from "../../../components-react/ProjectFilter";
+import { breadcrumbSchema } from "../../../data/schemas";
+
+const lang = "en";
+
+const jsonLd = breadcrumbSchema([
+  { name: "Home", url: "/en" },
+  { name: "Projects" },
+]);
+---
+
+<BaseLayout
+  title="Projects — SNA Acoustic Consultancy"
+  description="Success stories in acoustic engineering: industrial, architectural and environmental projects."
+  canonical="https://snaconsultoriaacustica.com/en/projects/"
+  lang="en"
+  jsonLd={jsonLd}
+>
+  <InteriorHero
+    compact
+    bgImage="/images/pilares-hero.webp"
+    breadcrumbs={[{ label: "Home", href: "/en" }, { label: "Projects" }]}
+    title="Over 25 years solving the most complex acoustic problems."
+    lang={lang}
+  />
+
+  <ProjectFilter lang={lang} client:idle />
+
+  <InteriorCTA
+    title="Do you have an acoustic project that needs this level of engineering?"
+    buttonLabel="Submit a technical case"
+    lang={lang}
+  />
+</BaseLayout>

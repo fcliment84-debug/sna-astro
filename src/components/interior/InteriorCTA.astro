@@ -1,0 +1,27 @@
+---
+import { localePath } from "../../data/navigation";
+
+export interface Props {
+  title: string;
+  buttonLabel: string;
+  href?: string;
+  lang?: "es" | "en";
+}
+
+const { title, buttonLabel, href = "/contacto", lang = "es" } = Astro.props;
+---
+
+<section class="bg-primary py-20 lg:py-28">
+  <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+    <h2 class="text-2xl lg:text-3xl font-semibold text-primary-foreground mb-8">
+      {title}
+    </h2>
+    <a
+      href={localePath(href, lang)}
+      class="group inline-flex items-center justify-center bg-primary-foreground text-primary px-8 py-3.5 text-sm font-medium rounded-none hover:bg-sna-accent hover:text-sna-dark transition-all duration-200"
+    >
+      <span class="transition-transform duration-200 group-hover:-translate-x-1">{buttonLabel}</span>
+      <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&rarr;</span>
+    </a>
+  </div>
+</section>

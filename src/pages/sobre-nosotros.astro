@@ -1,0 +1,182 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import InteriorHero from "../components/interior/InteriorHero.astro";
+import InteriorCTA from "../components/interior/InteriorCTA.astro";
+import { breadcrumbSchema } from "../data/schemas";
+
+const lang = "es";
+
+const jsonLd = breadcrumbSchema([
+  { name: "Inicio", url: "/" },
+  { name: "Sobre SNA" },
+]);
+
+const boltClip = "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)";
+
+const milestones = [
+  { period: "Pre-2014", title: "Donde todo empieza: el conocimiento de campo", text: "Antes de que SNA existiera como empresa, su equipo técnico acumuló más de 15 años de experiencia directa en ingeniería acústica industrial, proyectos energéticos, infraestructuras críticas y estudios avanzados de vibraciones. Ese bagaje no se aprende en un libro: se forja resolviendo problemas reales en entornos complejos." },
+  { period: "2014", title: "Nace una ingeniería acústica con vocación diferente", text: "SNA se funda con una premisa clara: aplicar rigor técnico real a la ingeniería acústica, lejos de los enfoques generalistas. Desde el primer día, la empresa se orienta a ofrecer soluciones de campo que funcionen, no informes teóricos que se queden en un cajón." },
+  { period: "2016", title: "Pioneros en tecnología de diagnóstico acústico", text: "SNA importa e integra la primera cámara acústica en España, una herramienta de diagnóstico que permite visualizar el comportamiento del sonido en tiempo real. Este hito marca un antes y un después: SNA pasa de ser una ingeniería competente a convertirse en referente técnico a nivel nacional." },
+  { period: "2017", title: "Posicionamiento en los sectores más exigentes", text: "Gracias a la capacidad técnica adquirida, SNA se posiciona en sectores donde la acústica no admite errores: industria energética, centros de datos e infraestructuras críticas. La empresa deja atrás la consultoría generalista y se consolida como ingeniería acústica de alto nivel técnico." },
+  { period: "2018–2020", title: "Cuando la solución convencional no es suficiente", text: "SNA detecta que las soluciones de aislamiento acústico convencional tienen limitaciones estructurales que el mercado asume como inevitables. En lugar de aceptarlas, inicia una línea de I+D propia enfocada en tres retos concretos: crear sistemas desmontables, desarrollar soluciones ventiladas y lograr un control efectivo de la baja frecuencia." },
+  { period: "2021", title: "Un metamaterial ingenierizado que cambia las reglas del juego", text: 'Fruto de años de investigación, SNA conceptualiza <span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>: un sistema modular con comportamiento acústico avanzado, basado en el control de la geometría y la propagación de ondas. No es un material más; es un metamaterial ingenierizado que resuelve lo que el aislamiento tradicional no puede.' },
+  { period: "2022", title: "Basslock® abre la puerta a nuevos mercados", text: 'Con <span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span> validado técnicamente, SNA amplía su radio de acción a sectores hasta entonces fuera de su alcance: deporte y grandes eventos, climatización y maquinaria HVAC, industria manufacturera y ejecución de obra civil.' },
+  { period: "2023–2024", title: "Patente nacional y extensión internacional PCT", text: 'SNA registra formalmente la tecnología <span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span> en España y extiende su protección a nivel internacional mediante el tratado PCT. No se trata solo de un trámite legal: es una decisión estratégica que blinda la innovación y la prepara para ser escalada globalmente.' },
+  { period: "2025", title: "De ingeniería a empresa tecnológica", text: "SNA da el salto organizativo: crea un holding empresarial que separa la actividad de ingeniería del desarrollo de producto, establece un modelo de licencias exclusivas y diseña una estructura pensada para la replicabilidad internacional." },
+  { period: "2026", title: "Europa, fabricación y alianzas globales", text: "SNA inicia su fase de internacionalización con tres ejes simultáneos: entrada en la fase europea de la patente (EPO), puesta en marcha de la fabricación industrial y establecimiento de alianzas estratégicas con socios internacionales. El conocimiento de campo que empezó hace más de 15 años se prepara para escalar sin fronteras." },
+];
+
+const stats = [
+  { value: "+25", label: "años de experiencia" },
+  { value: "+35", label: "profesionales" },
+  { value: "+200", label: "modelos computacionales" },
+];
+---
+
+<BaseLayout
+  title="Sobre SNA — Nuestra trayectoria | SNA Consultoría Acústica"
+  description="Más de 25 años de ingeniería acústica especializada. Descubre la trayectoria de SNA: desde el conocimiento de campo hasta la tecnología Basslock® y la expansión internacional."
+  canonical="https://snaconsultoriaacustica.com/sobre-nosotros/"
+  jsonLd={jsonLd}
+>
+  <InteriorHero
+    compact
+    breadcrumbs={[{ label: "Inicio", href: "/" }, { label: "Sobre SNA" }]}
+    title="Nuestra trayectoria"
+    subtitle="Más de veinticinco años construyendo una ingeniería acústica diferente: desde el conocimiento de campo hasta la tecnología propia."
+    bgImage="/images/trayectoria_sna.webp"
+    lang={lang}
+  />
+
+  <!-- Timeline -->
+  <section id="timeline-section" class="relative py-24 lg:py-32 scroll-mt-32 overflow-hidden">
+    <!-- Wave parallax layers -->
+    <div id="wave-1" class="absolute inset-0 z-[6] pointer-events-none text-primary opacity-[0.03]" style="filter: blur(6px)">
+      <svg width="12000" height="100%" viewBox="0 0 12000 800" fill="none" class="h-full min-w-[16000px] relative left-1/2 -translate-x-1/2" preserveAspectRatio="none">
+        <path d="M0 400 Q3000 0,6000 400 T12000 400" stroke="currentColor" stroke-width="4" />
+        <path d="M0 600 Q2000 300,4000 600 T8000 600 T12000 600" stroke="currentColor" stroke-width="3" />
+      </svg>
+    </div>
+    <div id="wave-2" class="absolute inset-0 z-[5] pointer-events-none text-primary opacity-[0.025]" style="filter: blur(0.5px)">
+      <svg width="12000" height="100%" viewBox="0 0 12000 800" fill="none" class="h-full min-w-[16000px] relative left-1/2 -translate-x-1/2" preserveAspectRatio="none">
+        <path d="M0 300 Q125 200,250 300 T500 300 T750 300 T1000 300 T1250 300 T1500 300 T1750 300 T2000 300 T2250 300 T2500 300 T2750 300 T3000 300 T3250 300 T3500 300 T3750 300 T4000 300 T4250 300 T4500 300 T4750 300 T5000 300 T5250 300 T5500 300 T5750 300 T6000 300 T6250 300 T6500 300 T6750 300 T7000 300 T7250 300 T7500 300 T7750 300 T8000 300 T8250 300 T8500 300 T8750 300 T9000 300 T9250 300 T9500 300 T9750 300 T10000 300 T10250 300 T10500 300 T10750 300 T11000 300 T11250 300 T11500 300 T11750 300 T12000 300" stroke="currentColor" stroke-width="0.9" />
+        <path d="M0 550 Q400 350,800 550 T1600 550 T2400 550 T3200 550 T4000 550 T4800 550 T5600 550 T6400 550 T7200 550 T8000 550 T8800 550 T9600 550 T10400 550 T11200 550 T12000 550" stroke="currentColor" stroke-width="1.1" />
+      </svg>
+    </div>
+    <div id="wave-3" class="absolute inset-0 z-[4] pointer-events-none text-primary opacity-[0.02]" style="filter: blur(2px)">
+      <svg width="12000" height="100%" viewBox="0 0 12000 800" fill="none" class="h-full min-w-[16000px] relative left-1/2 -translate-x-1/2" preserveAspectRatio="none">
+        <path d="M0 350 Q625 100,1250 350 T2500 350 T3750 350 T5000 350 T6250 350 T7500 350 T8750 350 T10000 350 T11250 350 T12000 350" stroke="currentColor" stroke-width="2" />
+        <path d="M0 600 Q500 450,1000 600 T2000 600 T3000 600 T4000 600 T5000 600 T6000 600 T7000 600 T8000 600 T9000 600 T10000 600 T11000 600 T12000 600" stroke="currentColor" stroke-width="1.5" />
+      </svg>
+    </div>
+    <div id="wave-4" class="absolute inset-0 z-[3] pointer-events-none text-primary opacity-[0.015]" style="filter: blur(4px)">
+      <svg width="12000" height="100%" viewBox="0 0 12000 800" fill="none" class="h-full min-w-[16000px] relative left-1/2 -translate-x-1/2" preserveAspectRatio="none">
+        <path d="M0 500 Q1500 200,3000 500 T6000 500 T9000 500 T12000 500" stroke="currentColor" stroke-width="3" />
+        <path d="M0 250 Q800 100,1600 250 T3200 250 T4800 250 T6400 250 T8000 250 T9600 250 T11200 250" stroke="currentColor" stroke-width="2" />
+      </svg>
+    </div>
+    <div id="wave-5" class="absolute inset-0 z-[2] pointer-events-none text-primary opacity-[0.01]" style="filter: blur(6px)">
+      <svg width="12000" height="100%" viewBox="0 0 12000 800" fill="none" class="h-full min-w-[16000px] relative left-1/2 -translate-x-1/2" preserveAspectRatio="none">
+        <path d="M0 400 Q3000 0,6000 400 T12000 400" stroke="currentColor" stroke-width="4" />
+        <path d="M0 600 Q2000 300,4000 600 T8000 600 T12000 600" stroke="currentColor" stroke-width="3" />
+      </svg>
+    </div>
+
+    <div class="max-w-5xl mx-auto px-6 lg:px-8 relative z-10">
+      <h2 class="text-3xl lg:text-4xl font-semibold mb-20 max-w-3xl">Diez hitos que explican quiénes somos.</h2>
+
+      <div class="relative pl-6 lg:pl-0">
+        <div class="absolute left-[7px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-primary/30" />
+        <div class="absolute left-[7px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-border" />
+
+        <div class="flex flex-col gap-12 lg:gap-16">
+          {milestones.map((m, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <div class:list={["relative", isEven ? "lg:w-[calc(50%-32px)] lg:ml-auto" : "lg:w-[calc(50%-32px)] lg:mr-auto"]}>
+                <div class:list={["absolute top-6 w-3 h-3 rounded-full bg-primary z-10 -left-[23px]", isEven ? "lg:-left-[38px]" : "lg:left-auto lg:-right-[38px]"]} />
+                <div class="relative border-l-4 border-primary bg-muted px-6 py-6 overflow-hidden" style={`clip-path: ${boltClip}`}>
+                  <span class="absolute top-4 right-6 text-[96px] font-semibold leading-none text-secondary/10 select-none">{String(i + 1).padStart(2, "0")}</span>
+                  <span class="font-mono text-sm font-semibold text-primary">{m.period}</span>
+                  <h3 class="mt-2 text-lg font-semibold leading-snug relative z-10">{m.title}</h3>
+                  <p class="mt-3 text-sm leading-relaxed text-foreground/80 relative z-10" set:html={m.text} />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="py-20 lg:py-28 bg-muted">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-3xl font-semibold mb-12">SNA hoy</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        {stats.map((stat) => (
+          <div class="border-l-4 border-primary bg-background px-6 py-8" style={`clip-path: ${boltClip}`}>
+            <span class="text-4xl lg:text-5xl font-semibold text-primary">{stat.value}</span>
+            <p class="mt-2 text-sm text-foreground/80 font-medium">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision -->
+  <section class="py-20 lg:py-28">
+    <div class="max-w-[800px] mx-auto px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-[34px] font-semibold mb-8 leading-tight">El conocimiento de campo se prepara para escalar sin fronteras.</h2>
+      <div class="space-y-6 text-foreground/80 leading-relaxed">
+        <p>SNA ha dejado de ser solo una ingeniería para convertirse en una compañía tecnológica con visión industrial y financiera. Un holding empresarial, un modelo de licencias exclusivas y una estructura pensada para la replicabilidad internacional marcan el camino hacia la expansión europea.</p>
+        <p>La internacionalización avanza con tres ejes simultáneos: la fase europea de la patente (EPO), la puesta en marcha de la fabricación industrial y el establecimiento de alianzas estratégicas con socios internacionales.</p>
+      </div>
+    </div>
+  </section>
+
+  <InteriorCTA title="¿Necesitas una solución acústica que realmente funcione?" buttonLabel="Contactar con SNA" lang={lang} />
+
+  <script>
+    const section = document.getElementById("timeline-section");
+    if (section) {
+      const waves = [
+        { el: document.getElementById("wave-1")!, xStart: -25, xEnd: 35, opMin: 0.03, opMax: 0.08 },
+        { el: document.getElementById("wave-2")!, xStart: 15, xEnd: -45, opMin: 0.025, opMax: 0.07 },
+        { el: document.getElementById("wave-3")!, xStart: -50, xEnd: 25, opMin: 0.02, opMax: 0.06 },
+        { el: document.getElementById("wave-4")!, xStart: 30, xEnd: -20, opMin: 0.015, opMax: 0.05 },
+        { el: document.getElementById("wave-5")!, xStart: -35, xEnd: 15, opMin: 0.01, opMax: 0.04 },
+      ];
+
+      let ticking = false;
+      const update = () => {
+        const rect = section.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+
+        waves.forEach((w) => {
+          if (!w.el) return;
+          // Horizontal parallax
+          const x = w.xStart + (w.xEnd - w.xStart) * progress;
+          w.el.style.transform = `translateX(${x}%)`;
+          // Opacity: ramp up 0→0.35, plateau 0.35→0.65, ramp down 0.65→1
+          let opacity: number;
+          if (progress < 0.35) {
+            opacity = w.opMin + (w.opMax - w.opMin) * (progress / 0.35);
+          } else if (progress > 0.65) {
+            opacity = w.opMax - (w.opMax - w.opMin) * ((progress - 0.65) / 0.35);
+          } else {
+            opacity = w.opMax;
+          }
+          w.el.style.opacity = String(opacity);
+        });
+        ticking = false;
+      };
+
+      window.addEventListener("scroll", () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }, { passive: true });
+      update();
+    }
+  </script>
+</BaseLayout>

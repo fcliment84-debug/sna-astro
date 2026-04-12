@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@import "./animations.css";
+
+/* ── Tailwind 4 Theme: SNA Design System ── */
+@theme {
+  /* SNA Palette */
+  --color-sna-teal: hsl(190 27% 42%);
+  --color-sna-teal-light: hsl(192 16% 62%);
+  --color-sna-text: hsl(0 0% 29%);
+  --color-sna-gray-bg: hsl(210 9% 96%);
+  --color-sna-gray-ui: hsl(207 5% 74%);
+  --color-sna-gray-line: hsl(206 9% 86%);
+  --color-sna-gray-hover: hsl(210 20% 98%);
+  --color-sna-dark: hsl(0 0% 29%);
+  --color-sna-accent: hsl(78 83% 60%);
+  --color-sna-green: hsl(135 15% 49%);
+
+  /* Basslock Palette */
+  --color-bl-blue: hsl(215 43% 30%);
+  --color-bl-lime: hsl(73 83% 60%);
+  --color-bl-neutral: hsl(240 100% 99%);
+  --color-bl-cyan: hsl(178 100% 67%);
+  --color-bl-blue-light: hsl(215 35% 40%);
+
+  /* Semantic colors (shadcn compat) */
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(0 0% 29%);
+  --color-primary: hsl(190 27% 42%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(192 16% 62%);
+  --color-secondary-foreground: hsl(0 0% 100%);
+  --color-muted: hsl(210 9% 96%);
+  --color-muted-foreground: hsl(0 0% 29%);
+  --color-border: hsl(206 9% 86%);
+  --color-destructive: hsl(0 84.2% 60.2%);
+
+  /* Radius */
+  --radius: 0px;
+
+  /* Fonts */
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* ── Base styles ── */
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    color: var(--color-sna-text);
+  }
+
+  h1 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
+  h3 {
+    font-weight: 500;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+  }
+
+  p {
+    line-height: 1.7;
+    text-align: justify;
+  }
+
+  /* Hero sections keep left-aligned text */
+  section[class*="min-h-screen"] p,
+  section[class*="min-h-["] p {
+    text-align: left;
+  }
+}
+
+/* ── Logo carousel keyframes ── */
+@keyframes logo-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}

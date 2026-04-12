@@ -1,0 +1,145 @@
+---
+export interface Props {
+  lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
+
+const texts = {
+  es: {
+    desc: "Consultoría de ingeniería acústica especializada en diagnóstico avanzado, diseño y ejecución.",
+    nav: "Navegación",
+    navLabel: "Navegación de pie de página",
+    methodology: "Metodología",
+    projects: "Proyectos",
+    about: "Sobre SNA",
+    contact: "Contacto",
+    sectors: "Sectores",
+    industrial: "Acústica industrial",
+    architectural: "Acústica arquitectónica",
+    environmental: "Acústica medioambiental",
+    contactLabel: "Contacto",
+    copyright: "© 2026 SNA Consultoría Acústica. Todos los derechos reservados.",
+    legal: "Aviso legal",
+    privacy: "Política de privacidad",
+  },
+  en: {
+    desc: "Acoustic engineering consultancy specialised in advanced diagnosis, design, and execution.",
+    nav: "Navigation",
+    navLabel: "Footer navigation",
+    methodology: "Methodology",
+    projects: "Projects",
+    about: "About SNA",
+    contact: "Contact",
+    sectors: "Sectors",
+    industrial: "Industrial acoustics",
+    architectural: "Architectural acoustics",
+    environmental: "Environmental acoustics",
+    contactLabel: "Contact",
+    copyright: "© 2026 SNA Acoustic Consultancy. All rights reserved.",
+    legal: "Legal notice",
+    privacy: "Privacy policy",
+  },
+};
+
+const t = texts[lang];
+
+function lp(esPath: string) {
+  if (lang === "es") return esPath;
+  const map: Record<string, string> = {
+    "/metodologia": "/en/methodology",
+    "/proyectos": "/en/projects",
+    "/basslock": "/en/basslock",
+    "/sobre-nosotros": "/en/about-us",
+    "/contacto": "/en/contact",
+    "/proyectos/acustica-industrial": "/en/projects/industrial-acoustics",
+    "/proyectos/acustica-arquitectonica": "/en/projects/architectural-acoustics",
+    "/proyectos/acustica-medioambiental": "/en/projects/environmental-acoustics",
+    "/aviso-legal": "/en/legal-notice",
+    "/politica-de-privacidad": "/en/privacy-policy",
+  };
+  return map[esPath] ?? `/en${esPath}`;
+}
+
+import { switchPath } from "../../data/navigation";
+const switchHref = switchPath(Astro.url.pathname);
+---
+
+<footer class="bg-sna-dark text-white" role="contentinfo">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+      {/* Col 1: Logo + descripción */}
+      <div>
+        <img
+          src="/images/logo_SNA_negativo.webp"
+          alt="SNA Consultoría Acústica"
+          class="h-8 w-auto"
+        />
+        <p class="mt-3 text-sm text-sna-teal-light leading-relaxed">
+          {t.desc}
+        </p>
+      </div>
+
+      {/* Col 2: Navegación */}
+      <div>
+        <p class="text-sm font-medium tracking-wider uppercase text-sna-teal-light mb-4">
+          {t.nav}
+        </p>
+        <nav aria-label={t.navLabel} class="flex flex-col gap-3">
+          <a href={lp("/metodologia")} class="text-sm text-white/80 hover:text-sna-accent transition-colors">{t.methodology}</a>
+          <a href={lp("/proyectos")} class="text-sm text-white/80 hover:text-sna-accent transition-colors">{t.projects}</a>
+          <a href={lp("/basslock")} class="text-sm text-white/80 hover:text-sna-accent transition-colors">
+            <span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>
+          </a>
+          <a href={lp("/sobre-nosotros")} class="text-sm text-white/80 hover:text-sna-accent transition-colors">{t.about}</a>
+          <a href={lp("/contacto")} class="text-sm text-white/80 hover:text-sna-accent transition-colors">{t.contact}</a>
+        </nav>
+      </div>
+
+      {/* Col 3: Sectores */}
+      <div>
+        <p class="text-sm font-medium tracking-wider uppercase text-sna-teal-light mb-4">
+          {t.sectors}
+        </p>
+        <nav class="flex flex-col gap-3">
+          <a href={lp("/proyectos/acustica-industrial")} class="text-sm text-white/80 hover:text-sna-accent transition-colors">{t.industrial}</a>
+          <a href={lp("/proyectos/acustica-arquitectonica")} class="text-sm text-white/80 hover:text-sna-accent transition-colors">{t.architectural}</a>
+          <a href={lp("/proyectos/acustica-medioambiental")} class="text-sm text-white/80 hover:text-sna-accent transition-colors">{t.environmental}</a>
+        </nav>
+      </div>
+
+      {/* Col 4: Contacto */}
+      <div>
+        <p class="text-sm font-medium tracking-wider uppercase text-sna-teal-light mb-4">
+          {t.contactLabel}
+        </p>
+        <address class="not-italic flex flex-col gap-3 text-sm text-white/80">
+          <span>info@snaconsultoriaacustica.com</span>
+          <span>+34 91 838 78 66</span>
+          <span>+34 984 017 971</span>
+          <span>+34 669 307 211</span>
+          <span>Madrid · Asturias</span>
+        </address>
+      </div>
+    </div>
+
+    {/* Bottom */}
+    <div class="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-sm text-sna-teal-light">
+        {t.copyright}
+      </p>
+      <div class="flex items-center gap-6">
+        <nav class="flex gap-6" aria-label="Legal">
+          <a href={lp("/aviso-legal")} class="text-sm text-white/60 hover:text-sna-accent transition-colors">{t.legal}</a>
+          <a href={lp("/politica-de-privacidad")} class="text-sm text-white/60 hover:text-sna-accent transition-colors">{t.privacy}</a>
+        </nav>
+        <a
+          href={switchHref}
+          class="text-sm font-medium text-white/60 hover:text-sna-accent transition-colors uppercase tracking-wider"
+        >
+          {lang === "es" ? "EN" : "ES"}
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

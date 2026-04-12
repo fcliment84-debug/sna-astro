@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import InteriorHero from "../../components/interior/InteriorHero.astro";
+import InteriorCTA from "../../components/interior/InteriorCTA.astro";
+import ProjectFilter from "../../components-react/ProjectFilter";
+import { breadcrumbSchema } from "../../data/schemas";
+
+const lang = "es";
+
+const jsonLd = breadcrumbSchema([
+  { name: "Inicio", url: "/" },
+  { name: "Proyectos" },
+]);
+---
+
+<BaseLayout
+  title="Proyectos — SNA Consultoría Acústica"
+  description="Casos de éxito en ingeniería acústica: proyectos industriales, arquitectónicos y medioambientales."
+  canonical="https://snaconsultoriaacustica.com/proyectos/"
+  jsonLd={jsonLd}
+>
+  <InteriorHero
+    compact
+    bgImage="/images/pilares-hero.webp"
+    breadcrumbs={[{ label: "Inicio", href: "/" }, { label: "Proyectos" }]}
+    title="Más de 25 años resolviendo los problemas acústicos más complejos."
+    lang={lang}
+  />
+
+  <ProjectFilter lang={lang} client:idle />
+
+  <InteriorCTA
+    title="¿Tienes un proyecto acústico que necesita este nivel de ingeniería?"
+    buttonLabel="Plantear caso técnico"
+    lang={lang}
+  />
+</BaseLayout>

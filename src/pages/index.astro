@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/home/Hero.astro";
+import Pilares from "../components/home/Pilares.astro";
+import Sectores from "../components/home/Sectores.astro";
+import Propuesta from "../components/home/Propuesta.astro";
+import Timeline from "../components/home/Timeline.astro";
+import Logos from "../components/home/Logos.astro";
+import CTASection from "../components/home/CTASection";
+import { organizationSchema, breadcrumbSchema } from "../data/schemas";
+
+const jsonLd = [
+  organizationSchema,
+  breadcrumbSchema([{ name: "Inicio", url: "/" }]),
+];
+---
+
+<BaseLayout
+  title="SNA — Ingeniería acústica | Consultoría acústica técnica especializada"
+  description="SNA Consultoría Acústica: más de 25 años de experiencia en ingeniería acústica, control de ruido y vibraciones. Diagnóstico, diseño y ejecución de soluciones acústicas."
+  canonical="https://snaconsultoriaacustica.com/"
+  ogType="website"
+  jsonLd={jsonLd}
+  hideHeaderSpacer
+>
+  <Hero />
+  <Pilares />
+  <Sectores />
+  <Propuesta />
+  <Timeline />
+  <Logos />
+  <CTASection client:visible />
+</BaseLayout>

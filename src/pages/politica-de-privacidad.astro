@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { breadcrumbSchema } from "../data/schemas";
+
+const lang = "es";
+
+const jsonLd = breadcrumbSchema([
+  { name: "Inicio", url: "/" },
+  { name: "Política de Privacidad" },
+]);
+---
+
+<BaseLayout
+  title="Política de Privacidad | SNA Consultoría Acústica"
+  description="Política de privacidad de SNA Consultoría Acústica. Información sobre el tratamiento de datos personales, derechos RGPD y uso de cookies."
+  canonical="https://snaconsultoriaacustica.com/politica-de-privacidad/"
+  jsonLd={jsonLd}
+>
+  <section class="pt-32 pb-20 lg:pt-40 lg:pb-28">
+    <article class="max-w-4xl mx-auto px-6 lg:px-8 text-justify leading-relaxed">
+      <h1 class="text-2xl lg:text-3xl font-bold mb-10">Política de Privacidad</h1>
+      <p class="mb-8">Siguiendo los principios de licitud, lealtad y transparencia, ponemos a su disposición la presente Política de Privacidad.</p>
+
+      <!-- Responsable -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">¿Quién es el responsable del tratamiento de sus datos?</h2>
+        <div class="rounded-lg bg-muted/60 p-5 text-sm leading-relaxed space-y-1">
+          <p><strong>Nombre fiscal:</strong> SNA Consultoría Acústica</p>
+          <p><strong>CIF:</strong> B-24661738</p>
+          <p><strong>Domicilio social:</strong> Torre Europa, Paseo de la Castellana, 95, planta 29, 28046 Madrid</p>
+          <p><strong>Email:</strong> info@snaconsultoriaacustica.com</p>
+          <p><strong>Teléfono:</strong> 91 838 78 66</p>
+        </div>
+      </div>
+
+      <!-- Finalidad -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">¿Con qué finalidad tratamos sus datos personales?</h2>
+        <p>En SNA Consultoría Acústica tratamos la información que nos facilita con la finalidad de gestionar la relación contractual que nos une.</p>
+      </div>
+
+      <!-- Conservación -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">¿Por cuánto tiempo conservaremos sus datos personales?</h2>
+        <p>Sus datos serán conservados el tiempo mínimo necesario para la correcta prestación del servicio ofrecido así como para atender las responsabilidades que se pudieran derivar del mismo y de cualquier otra exigencia legal.</p>
+      </div>
+
+      <!-- Legitimación -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">¿Cuál es la legitimación para el tratamiento de sus datos?</h2>
+        <p>La base legal para el tratamiento de sus datos personales consiste en el consentimiento del propio interesado. Los datos que le solicitamos son adecuados, pertinentes y estrictamente necesarios y, en ningún caso, está obligado a facilitárnoslos, pero su no comunicación podrá afectar a la finalidad del servicio o la imposibilidad de prestarlo.</p>
+      </div>
+
+      <!-- Destinatarios -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">¿A qué destinatarios se comunicarán sus datos?</h2>
+        <p>SNA Consultoría Acústica no comunicará sus datos a ningún tercero, salvo que se informe de ello expresamente.</p>
+      </div>
+
+      <!-- Derechos -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">¿Cuáles son sus derechos cuando nos facilita sus datos?</h2>
+        <p class="mb-4">Los derechos de protección de datos de los que son titulares los interesados son:</p>
+        <ul class="list-disc pl-6 space-y-2 mb-4">
+          <li>Derecho a solicitar el acceso a los datos personales relativos al interesado</li>
+          <li>Derecho de rectificación o supresión</li>
+          <li>Derecho de oposición</li>
+          <li>Derecho a solicitar la limitación de su tratamiento</li>
+          <li>Derecho a la portabilidad de los datos</li>
+        </ul>
+        <p>Los titulares de los datos personales obtenidos podrán ejercer sus derechos de protección de datos personales dirigiendo una comunicación por escrito al domicilio de SNA Consultoría Acústica o al correo electrónico info@snaconsultoriaacustica.com, incluyendo en ambos casos fotocopia de su DNI u otro documento de identificación equivalente.</p>
+      </div>
+
+      <!-- Consentimiento -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">¿Puedo retirar el consentimiento?</h2>
+        <p>Usted tiene la posibilidad y el derecho a retirar el consentimiento para cualquier finalidad específica otorgada en su momento, sin que ello afecte a la licitud del tratamiento basado en el consentimiento previo a su retirada.</p>
+      </div>
+
+      <!-- Reclamaciones -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">¿Dónde puedo reclamar en caso de que considere que no se tratan mis datos correctamente?</h2>
+        <p>Si algún interesado considera que sus datos no son tratados correctamente por SNA Consultoría Acústica puede dirigir sus reclamaciones al correo electrónico info@snaconsultoriaacustica.com o a la autoridad de protección de datos que corresponda, siendo la AEPD la indicada en el territorio nacional.</p>
+      </div>
+
+      <!-- Seguridad -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">Seguridad y actualización de sus datos personales</h2>
+        <p>Con el objetivo de salvaguardar la seguridad de sus datos personales, le informamos que SNA Consultoría Acústica ha adoptado todas las medidas de índole técnica y organizativa necesarias para garantizar la seguridad de los datos personales suministrados.</p>
+      </div>
+
+      <!-- Confidencialidad -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">Confidencialidad</h2>
+        <p>SNA Consultoría Acústica le informa que sus datos serán tratados con el máximo celo y confidencialidad por todo el personal que intervenga en cualquiera de las fases del tratamiento. No cederemos ni comunicaremos a ningún tercero sus datos, excepto en los casos legalmente previstos, o salvo que el interesado nos hubiera autorizado expresamente.</p>
+      </div>
+
+      <!-- Cookies -->
+      <div class="rounded-lg border border-sna-gray-line bg-muted/30 p-6 lg:p-8">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">Cookies</span>
+          <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground">Información sobre cookies</h2>
+        </div>
+        <h3 class="text-base font-semibold mt-4 mb-2">¿Qué es una Cookie?</h3>
+        <p class="mb-4">Una Cookie es un pequeño fichero de texto que un sitio web coloca en su PC, teléfono o cualquier otro dispositivo, con información sobre su navegación en dicho sitio.</p>
+        <h3 class="text-base font-semibold mt-4 mb-2">¿Para qué se utilizan las Cookies en este sitio web?</h3>
+        <p class="mb-4">Las Cookies son una parte esencial de cómo funciona nuestro sitio web. El objetivo principal de nuestras Cookies es mejorar su experiencia en la navegación.</p>
+        <h3 class="text-base font-semibold mt-4 mb-2">¿Para qué NO se utilizan las Cookies en esta web?</h3>
+        <p class="mb-4">No almacenamos información sensible de identificación personal como su dirección, su contraseña, los datos de su tarjeta de crédito o débito, etc., en las Cookies que utilizamos.</p>
+        <h3 class="text-base font-semibold mt-4 mb-2">¿Se pueden eliminar las cookies?</h3>
+        <p>Sí, y no sólo eliminar, también bloquear, de forma general o particular para un dominio específico.</p>
+      </div>
+    </article>
+  </section>
+</BaseLayout>

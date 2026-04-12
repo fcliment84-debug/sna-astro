@@ -1,0 +1,103 @@
+---
+export interface Props {
+  lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
+
+const texts = {
+  es: {
+    hero: "Un nuevo estándar en ingeniería acústica.",
+    sub: "SNA es una consultoría acústica especializada en los proyectos técnicamente más exigentes. Diagnosticamos el problema real, diseñamos la solución y ejecutamos con responsabilidad técnica completa.",
+    cta1: "Plantear caso técnico",
+    cta2: "Ver metodología",
+    scroll: "Scroll a pilares",
+  },
+  en: {
+    hero: "A new standard in acoustic engineering.",
+    sub: "SNA is an acoustic consultancy specialised in the most technically demanding projects. We diagnose the real problem, design the solution and execute with full technical responsibility.",
+    cta1: "Submit a technical case",
+    cta2: "See methodology",
+    scroll: "Scroll to pillars",
+  },
+};
+
+const t = texts[lang];
+const contactHref = lang === "en" ? "/en/contact" : "/contacto";
+const metodoHref = lang === "en" ? "/en/methodology" : "/metodologia";
+---
+
+<section class="relative min-h-screen flex items-end overflow-hidden">
+  <div class="absolute inset-0 bg-sna-dark">
+    <video
+      src="/videos/hero.mp4"
+      autoplay
+      loop
+      muted
+      playsinline
+      class="w-full h-[120%] object-cover"
+    ></video>
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="absolute inset-0 bg-[hsl(78_83%_60%/0.15)] mix-blend-overlay"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pb-16 lg:pb-24 pt-32 w-full">
+    <h1
+      id="hero-heading"
+      class="text-white text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] max-w-3xl"
+      data-typewriter={t.hero}
+    >
+      <span class="typewriter-text"></span>
+      <span class="typewriter-cursor inline-block w-[3px] h-[1em] bg-white/80 align-middle ml-1 animate-pulse"></span>
+    </h1>
+    <p class="mt-6 text-white/85 text-lg lg:text-xl leading-relaxed max-w-[700px]">
+      {t.sub}
+    </p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4">
+      <a
+        href={contactHref}
+        class="group inline-flex items-center justify-center bg-primary text-primary-foreground px-8 py-4 text-base font-medium rounded-none hover:bg-sna-accent hover:text-sna-dark transition-all duration-200"
+      >
+        <span class="transition-transform duration-200 group-hover:-translate-x-1">{t.cta1}</span>
+        <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&rarr;</span>
+      </a>
+      <a
+        href={metodoHref}
+        class="group inline-flex items-center justify-center border border-white text-white px-8 py-4 text-base font-medium rounded-none hover:border-sna-accent hover:text-sna-accent transition-all duration-200"
+      >
+        <span class="transition-transform duration-200 group-hover:-translate-x-1">{t.cta2}</span>
+        <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&rarr;</span>
+      </a>
+    </div>
+  </div>
+
+  <button
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/70 hover:text-white transition-colors animate-bounce"
+    onclick="document.getElementById('pilares')?.scrollIntoView({behavior:'smooth',block:'center'})"
+    aria-label={t.scroll}
+  >
+    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+</section>
+
+<script>
+  const el = document.querySelector('[data-typewriter]') as HTMLElement;
+  if (el) {
+    const text = el.dataset.typewriter!;
+    const span = el.querySelector('.typewriter-text') as HTMLElement;
+    const cursor = el.querySelector('.typewriter-cursor') as HTMLElement;
+    let i = 0;
+    setTimeout(() => {
+      const timer = setInterval(() => {
+        i++;
+        span.textContent = text.slice(0, i);
+        if (i >= text.length) {
+          clearInterval(timer);
+          cursor.style.display = 'none';
+        }
+      }, 45);
+    }, 600);
+  }
+</script>

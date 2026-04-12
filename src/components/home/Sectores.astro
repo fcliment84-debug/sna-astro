@@ -1,0 +1,106 @@
+---
+import { Image } from "astro:assets";
+import acusticaIndustrialImg from "../../assets/hero/acustica-industrial.webp";
+import acusticaArquitectonicaImg from "../../assets/hero/acustica-arquitectonica.png";
+import acusticaMedioambientalImg from "../../assets/hero/acustica-medioambiental.webp";
+
+export interface Props {
+  lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
+
+const headingTexts = {
+  es: "Tres áreas de especialización técnica.",
+  en: "Three areas of technical specialisation.",
+};
+
+const sectorData = {
+  es: [
+    {
+      category: "ACÚSTICA INDUSTRIAL",
+      title: "Acústica industrial",
+      text: "Maquinaria de alta potencia, entornos de producción, exposición laboral al ruido, vibraciones estructurales. Intervenciones técnicas desde el diagnóstico hasta la solución constructiva.",
+      image: acusticaIndustrialImg,
+      link: "/proyectos/acustica-industrial",
+    },
+    {
+      category: "ACÚSTICA ARQUITECTÓNICA",
+      title: "Acústica arquitectónica",
+      text: "Edificación residencial, hoteles, oficinas, centros educativos, salas técnicas. Aislamiento, absorción y control acústico integrados desde el diseño o en edificio existente.",
+      image: acusticaArquitectonicaImg,
+      link: "/proyectos/acustica-arquitectonica",
+    },
+    {
+      category: "ACÚSTICA MEDIOAMBIENTAL",
+      title: "Acústica medioambiental",
+      text: "Evaluación de impacto acústico, mapas de ruido, pantallas y barreras, protección de infraestructuras. Diagnóstico y solución del ruido en el entorno urbano e industrial.",
+      image: acusticaMedioambientalImg,
+      link: "/proyectos/acustica-medioambiental",
+    },
+  ],
+  en: [
+    {
+      category: "INDUSTRIAL ACOUSTICS",
+      title: "Industrial acoustics",
+      text: "High-power machinery, production environments, occupational noise exposure, structural vibrations. Technical interventions from diagnosis to construction solutions.",
+      image: acusticaIndustrialImg,
+      link: "/proyectos/acustica-industrial",
+    },
+    {
+      category: "ARCHITECTURAL ACOUSTICS",
+      title: "Architectural acoustics",
+      text: "Residential buildings, hotels, offices, educational centres, technical rooms. Insulation, absorption and acoustic control integrated from design or in existing buildings.",
+      image: acusticaArquitectonicaImg,
+      link: "/proyectos/acustica-arquitectonica",
+    },
+    {
+      category: "ENVIRONMENTAL ACOUSTICS",
+      title: "Environmental acoustics",
+      text: "Acoustic impact assessment, noise maps, screens and barriers, infrastructure protection. Diagnosis and noise solutions in urban and industrial environments.",
+      image: acusticaMedioambientalImg,
+      link: "/proyectos/acustica-medioambiental",
+    },
+  ],
+};
+
+const linkMap: Record<string, string> = {
+  "/proyectos/acustica-industrial": "/en/projects/industrial-acoustics",
+  "/proyectos/acustica-arquitectonica": "/en/projects/architectural-acoustics",
+  "/proyectos/acustica-medioambiental": "/en/projects/environmental-acoustics",
+};
+
+const sectors = sectorData[lang];
+---
+
+<section class="py-24 lg:py-32" aria-labelledby="sectores-heading">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <h2 id="sectores-heading" class="text-3xl lg:text-4xl font-semibold mb-16">
+      {headingTexts[lang]}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {sectors.map((sector) => (
+        <a href={lang === "en" ? linkMap[sector.link] : sector.link} class="group block">
+          <div class="overflow-hidden border border-sna-gray-line">
+            <Image
+              src={sector.image}
+              alt={sector.title}
+              class="w-full aspect-[4/3] object-cover transition-transform duration-300 group-hover:scale-105"
+              width={800}
+              height={600}
+              loading="lazy"
+            />
+          </div>
+          <div class="pt-5">
+            <span class="text-xs font-medium tracking-widest text-secondary">{sector.category}</span>
+            <h3 class="text-lg font-medium mt-2 flex items-center">
+              <span class="transition-transform duration-200 group-hover:-translate-x-1">{sector.title}</span>
+              <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 group-hover:text-sna-accent transition-all duration-200 ml-0 group-hover:ml-2">&rarr;</span>
+            </h3>
+            <p class="text-sm text-foreground/80 mt-2 leading-relaxed">{sector.text}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

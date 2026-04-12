@@ -1,0 +1,97 @@
+---
+export interface Props {
+  lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
+
+const phasesData = {
+  es: [
+    {
+      label: "Expertise",
+      period: "2002–2017",
+      title: "La base técnica que marca la diferencia",
+      text: 'SNA nace del conocimiento de campo real. Más de una década de experiencia en acústica industrial, la importación de la primera cámara acústica en España y una especialización progresiva en los sectores más exigentes —energía, centros de datos, infraestructuras críticas— construyeron una base técnica que hoy es nuestro mayor diferencial.',
+    },
+    {
+      label: "Innovación",
+      period: "2018–2024",
+      title: "De la investigación aplicada a un metamaterial sin precedentes",
+      text: 'Cuando las soluciones convencionales dejaron de ser suficientes, las creamos nosotros. Años de I+D propio dieron como resultado <span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>, un metamaterial ingenierizado que cambia las reglas del aislamiento acústico. Una tecnología protegida por patente nacional e internacional que ya se aplica en sectores que van desde la industria energética hasta los grandes eventos.',
+    },
+    {
+      label: "Escala",
+      period: "2025–2026",
+      title: "De ingeniería española a tecnología global",
+      text: 'SNA ha evolucionado de ingeniería especializada a compañía tecnológica con estructura industrial. Un holding empresarial, un modelo de licencias diseñado para la replicabilidad y una estrategia de expansión europea en marcha. El conocimiento que empezó en campo se prepara para escalar sin fronteras.',
+    },
+  ],
+  en: [
+    {
+      label: "Expertise",
+      period: "2002–2017",
+      title: "The technical foundation that makes the difference",
+      text: 'SNA was born from real field knowledge. Over a decade of experience in industrial acoustics, the import of the first acoustic camera in Spain and a progressive specialisation in the most demanding sectors — energy, data centres, critical infrastructure — built a technical foundation that is our greatest differentiator today.',
+    },
+    {
+      label: "Innovation",
+      period: "2018–2024",
+      title: "From applied research to an unprecedented metamaterial",
+      text: 'When conventional solutions were no longer enough, we created our own. Years of in-house R&D resulted in <span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>, an engineered metamaterial that changes the rules of acoustic insulation. A technology protected by national and international patents, already applied in sectors from the energy industry to major events.',
+    },
+    {
+      label: "Scale",
+      period: "2025–2026",
+      title: "From Spanish engineering to global technology",
+      text: 'SNA has evolved from a specialised engineering firm to a technology company with an industrial structure. A corporate holding, a licensing model designed for replicability and a European expansion strategy underway. The field knowledge that started it all is preparing to scale without borders.',
+    },
+  ],
+};
+
+const headingTexts = {
+  es: "Más de veinticinco años de trabajo técnico especializado.",
+  en: "Over twenty-five years of specialised technical work.",
+};
+
+const ctaTexts = {
+  es: "Descubre nuestra trayectoria completa",
+  en: "Discover our full trajectory",
+};
+
+const phases = phasesData[lang];
+const aboutHref = lang === "en" ? "/en/about" : "/sobre-nosotros";
+
+const boltClip = "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)";
+---
+
+<section class="py-24 lg:py-32" aria-labelledby="timeline-heading">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <h2 id="timeline-heading" class="text-3xl lg:text-4xl font-semibold mb-16 max-w-3xl">
+      {headingTexts[lang]}
+    </h2>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {phases.map((phase) => (
+        <div
+          class="border-l-4 border-primary bg-muted px-6 py-8 flex flex-col gap-4"
+          style={`clip-path: ${boltClip}`}
+        >
+          <div class="flex items-center gap-3">
+            <span class="text-[11px] font-semibold uppercase tracking-widest text-primary">{phase.label}</span>
+            <span class="font-mono text-xs text-muted-foreground">{phase.period}</span>
+          </div>
+          <h3 class="text-lg font-semibold leading-snug">{phase.title}</h3>
+          <p class="text-sm leading-relaxed text-foreground/80" set:html={phase.text} />
+        </div>
+      ))}
+    </div>
+    <div class="mt-12 text-center">
+      <a
+        href={aboutHref}
+        class="group inline-flex items-center justify-center text-xs font-medium tracking-widest uppercase text-primary hover:text-sna-accent transition-all duration-200"
+      >
+        <span class="transition-transform duration-200 group-hover:-translate-x-1">{ctaTexts[lang]}</span>
+        <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>

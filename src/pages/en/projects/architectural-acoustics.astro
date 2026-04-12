@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import InteriorHero from "../../../components/interior/InteriorHero.astro";
+import InteriorCTA from "../../../components/interior/InteriorCTA.astro";
+import EditorialBlock from "../../../components/interior/EditorialBlock.astro";
+import SectorCapacidades from "../../../components/sector/SectorCapacidades.astro";
+import SectorProyectos from "../../../components/sector/SectorProyectos.astro";
+import SectorNormativa from "../../../components/sector/SectorNormativa.astro";
+import { breadcrumbSchema, serviceSchema } from "../../../data/schemas";
+
+const lang = "en";
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: "Home", url: "/en" },
+    { name: "Projects", url: "/en/projects" },
+    { name: "Architectural acoustics" },
+  ]),
+  serviceSchema({
+    name: "Architectural acoustics",
+    description: "Acoustic consultancy for building projects: new construction, refurbishment, hotels, offices, educational centres and technical rooms.",
+    url: "/en/projects/architectural-acoustics",
+    capabilities: [
+      "Building acoustic insulation",
+      "Interior acoustic conditioning",
+      "Installation noise control",
+      "CTE DB-HR compliance",
+      "Acoustic studies for licences",
+      "Acoustic refurbishment",
+    ],
+  }),
+];
+
+const typologies = [
+  { title: "Residential buildings", description: "Inter-dwelling insulation, façade insulation, control of installation noise and impact noise on floors." },
+  { title: "Hotels", description: "Privacy between rooms, insulation of common areas from rest areas, control of HVAC installation noise." },
+  { title: "Offices and workspaces", description: "Control of speech intelligibility, acoustic privacy management, absorption for background noise control." },
+  { title: "Educational centres", description: "Classroom acoustic quality is a documented factor in educational performance." },
+  { title: "Technical rooms: recording, rehearsal, private cinema", description: "Spaces with special acoustic requirements that demand a comprehensive acoustic design." },
+  { title: "Public and institutional buildings", description: "Acoustic projects in buildings with specific requirements for intelligibility, comfort, or protection from exterior noise." },
+];
+
+const capacidades = [
+  { title: "Absorption and insulation: two different problems", description: "The confusion between acoustic absorption and acoustic insulation is common and has design consequences." },
+  { title: "Building modelling", description: "We use acoustic simulation software to model the behaviour of construction systems in projects." },
+  { title: "Specification and technical prescription", description: "We prepare acoustic technical documentation: calculation reports, material and system specifications." },
+  { title: "Diagnosis of pathologies in existing buildings", description: "When the acoustic problem already exists in a building in use, the starting point is diagnosis." },
+];
+---
+
+<BaseLayout
+  title="Architectural Acoustics | SNA — Building acoustic consultancy"
+  description="Acoustic consultancy for building projects: new construction, refurbishment, hotels, offices, educational centres, and technical rooms."
+  canonical="https://snaconsultoriaacustica.com/en/projects/architectural-acoustics/"
+  lang="en"
+  jsonLd={jsonLd}
+>
+  <InteriorHero
+    bgImage="/images/acustica-arquitectonica.webp"
+    breadcrumbs={[{ label: "Home", href: "/en" }, { label: "Projects", href: "/en/projects" }, { label: "Architectural acoustics" }]}
+    title="Architectural acoustics: the acoustic behaviour of the building as a design criterion."
+    subtitle="A building's acoustic comfort is not the result of adding materials at the end of the project. It is a property that is designed from the start, verified before execution, and measured upon completion."
+    lang={lang}
+  >
+    <div class="mt-8">
+      <a href="#proyectos-sector" class="group inline-flex items-center justify-center border border-white text-white px-8 py-4 text-base font-medium rounded-none hover:border-sna-accent hover:text-sna-accent transition-all duration-200">
+        <span class="transition-transform duration-200 group-hover:-translate-x-1">View architectural projects</span>
+        <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&rarr;</span>
+      </a>
+    </div>
+  </InteriorHero>
+
+  <EditorialBlock title="CTE compliance is the starting point, not the goal.">
+    <p>The Spanish Technical Building Code, in its Basic Document DB-HR, establishes minimum noise protection requirements for buildings. Meeting those requirements is necessary. It is not sufficient.</p>
+    <p>A building can pass DB-HR compliance measurements and still exhibit significant acoustic problems under real-use conditions.</p>
+    <p>At SNA we work in the gap between regulatory compliance and real-world results.</p>
+  </EditorialBlock>
+
+  <SectorCapacidades heading="Project typologies in architectural acoustics." capacidades={typologies} />
+
+  <section class="py-20 lg:py-28">
+    <div class="max-w-[800px] mx-auto px-6 lg:px-8">
+      <h2 class="text-2xl lg:text-[34px] font-semibold mb-8 leading-tight">What we do in architectural acoustics.</h2>
+      <div class="space-y-6 text-[15px] text-foreground/80 leading-relaxed">
+        {capacidades.map((cap) => (
+          <div>
+            <h3 class="text-base font-semibold text-foreground mb-2">{cap.title}</h3>
+            <p>{cap.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SectorProyectos heading="Representative architectural projects." sectorFilter="Arquitectónico" lang={lang} />
+
+  <SectorNormativa heading="The building regulatory framework: CTE DB-HR.">
+    <p>The Spanish Technical Building Code (CTE), through its Basic Document for Noise Protection (DB-HR), establishes basic acoustic insulation requirements.</p>
+    <p>DB-HR defines minimum insulation values between protected and emitting rooms.</p>
+    <p>SNA works not only to meet these minimum requirements, but to ensure that the building's real acoustic behaviour matches the quality expectations.</p>
+  </SectorNormativa>
+
+  <InteriorCTA title="Are you designing a building or do you have an acoustic problem in an existing one?" buttonLabel="Submit a technical case" lang={lang} />
+</BaseLayout>

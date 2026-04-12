@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const lang = "es";
+
+const routes = [
+  {
+    href: "/metodologia",
+    title: "Cómo trabajamos",
+    description: "Diagnóstico, diseño y ejecución: tres fases integradas con responsabilidad técnica completa.",
+  },
+  {
+    href: "/proyectos",
+    title: "Proyectos realizados",
+    description: "Casos reales en acústica industrial, arquitectónica y medioambiental.",
+  },
+  {
+    href: "/sobre-nosotros",
+    title: "Nuestra trayectoria",
+    description: "Más de 25 años de ingeniería acústica especializada y fabricación propia.",
+  },
+];
+---
+
+<BaseLayout
+  title="404 — Página no encontrada | SNA Consultoría Acústica"
+  description="La página que buscas no existe."
+  noindex={true}
+>
+  <section class="bg-muted py-20 lg:py-28">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+      <!-- Heading -->
+      <h1 class="text-6xl font-bold text-foreground mb-4">404</h1>
+      <p class="text-xl text-muted-foreground mb-4">La página que buscas no está disponible</p>
+      <p class="text-base text-muted-foreground mb-12">Quizá te interese explorar alguna de estas secciones</p>
+
+      <!-- Navigation cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 text-left">
+        {routes.map((route) => (
+          <a
+            href={route.href}
+            class="group block bg-background p-6 border-b-2 border-transparent hover:border-sna-accent hover:shadow-lg transition-all duration-300"
+          >
+            <h2 class="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+              {route.title}
+              <span class="inline-block ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200">&rarr;</span>
+            </h2>
+            <p class="text-sm text-muted-foreground leading-relaxed">{route.description}</p>
+          </a>
+        ))}
+      </div>
+
+      <!-- Back link -->
+      <a
+        href="/"
+        class="text-sm text-primary hover:text-primary/80 transition-colors"
+      >
+        Volver al inicio
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,82 @@
+---
+export interface Props {
+  lang?: "es" | "en";
+}
+
+const { lang = "es" } = Astro.props;
+
+const logos = [
+  { name: "IBM", file: "ibm.png" },
+  { name: "Nammo", file: "nammo.svg" },
+  { name: "Adif", file: "adif.png" },
+  { name: "Vodafone", file: "vodafone.png" },
+  { name: "Bayer", file: "bayer.png" },
+  { name: "Naturgy", file: "naturgy.svg" },
+  { name: "Siemens", file: "siemens.png" },
+  { name: "Mercedes-Benz", file: "mercedes.svg" },
+  { name: "Repsol", file: "repsol.svg" },
+  { name: "GE Vernova", file: "ge-vernova.svg" },
+  { name: "Stellantis", file: "stellantis.png" },
+  { name: "Dragados", file: "dragados.png" },
+  { name: "TotalEnergies", file: "totalenergies.svg" },
+  { name: "Alstom", file: "alstom.png" },
+  { name: "Iberdrola", file: "iberdrola.png" },
+  { name: "Air Liquide", file: "air-liquide.svg" },
+  { name: "Quirón Prevención", file: "quiron.png" },
+  { name: "Renault", file: "renault.svg" },
+  { name: "Daikin", file: "daikin.png" },
+  { name: "Hitachi", file: "hitachi.png" },
+  { name: "General Dynamics", file: "general-dynamics.png" },
+  { name: "Movistar", file: "movistar.png" },
+  { name: "Solido", file: "solido.svg" },
+  { name: "Orange", file: "orange.svg" },
+  { name: "EDP", file: "edp.png" },
+  { name: "Bimbo", file: "bimbo.png" },
+  { name: "Aqualia", file: "aqualia.png" },
+  { name: "Nutreco", file: "nutreco.svg" },
+  { name: "Jeremias", file: "jeremias.png" },
+  { name: "Loewe", file: "loewe.svg" },
+  { name: "MIT", file: "mit.svg" },
+  { name: "Moeve", file: "moeve.png" },
+  { name: "Grupo Cementos Portland", file: "gcpv.png" },
+  { name: "FCC", file: "fcc.png" },
+  { name: "Endesa", file: "endesa.svg" },
+  { name: "Caterpillar", file: "caterpillar.png" },
+  { name: "BASF", file: "basf.png" },
+];
+
+const texts = {
+  es: {
+    heading: "Proyectos en entornos de alta exigencia técnica.",
+    sub: "Hemos trabajado con organizaciones que afrontan problemas acústicos en infraestructuras críticas, edificios institucionales e industria de primer nivel.",
+  },
+  en: {
+    heading: "Projects in technically demanding environments.",
+    sub: "We have worked with organisations facing acoustic challenges in critical infrastructure, institutional buildings and top-tier industry.",
+  },
+};
+
+const t = texts[lang];
+---
+
+<section class="py-24 lg:py-32 bg-muted" aria-labelledby="logos-heading">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+    <h2 id="logos-heading" class="text-3xl lg:text-4xl font-semibold mb-4">{t.heading}</h2>
+    <p class="text-base lg:text-lg text-foreground/80 max-w-2xl mx-auto mb-16 leading-relaxed">{t.sub}</p>
+  </div>
+  <div
+    class="relative overflow-hidden group"
+    style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);"
+  >
+    <div
+      class="flex items-center gap-16 lg:gap-20 w-max group-hover:[animation-play-state:paused]"
+      style="animation: logo-scroll 70s linear infinite;"
+    >
+      {[...logos, ...logos, ...logos].map((logo, i) => (
+        <div class="flex-shrink-0 flex items-center justify-center h-12 w-[140px]" title={logo.name}>
+          <img src={`/logos/${logo.file}`} alt={logo.name} loading="lazy" class="h-10 w-auto max-w-[120px] object-contain" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

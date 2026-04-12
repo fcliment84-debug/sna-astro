@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import InteriorHero from "../../components/interior/InteriorHero.astro";
+import InteriorCTA from "../../components/interior/InteriorCTA.astro";
+import EditorialBlock from "../../components/interior/EditorialBlock.astro";
+import SectorCapacidades from "../../components/sector/SectorCapacidades.astro";
+import SectorProyectos from "../../components/sector/SectorProyectos.astro";
+import SectorNormativa from "../../components/sector/SectorNormativa.astro";
+import { breadcrumbSchema, serviceSchema } from "../../data/schemas";
+
+const lang = "es";
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: "Inicio", url: "/" },
+    { name: "Proyectos", url: "/proyectos" },
+    { name: "Acústica industrial" },
+  ]),
+  serviceSchema({
+    name: "Acústica industrial",
+    description: "Diagnóstico, diseño y ejecución de soluciones acústicas en entornos industriales. Aislamiento de maquinaria, control de vibraciones, cabinas acústicas y monitorización.",
+    url: "/proyectos/acustica-industrial",
+    capabilities: [
+      "Diagnóstico acústico industrial",
+      "Aislamiento de maquinaria y encapsulado",
+      "Cabinas acústicas industriales",
+      "Control de vibraciones",
+      "Silenciadores industriales",
+      "Pantallas acústicas",
+      "Monitorización acústica en tiempo real",
+      "Mantenimiento predictivo acústico",
+    ],
+  }),
+];
+
+const capacidades = [
+  { title: "Diagnóstico acústico industrial", description: "Medición de niveles de exposición laboral al ruido conforme al RD 286/2006. Caracterización espectral de fuentes y entornos. Localización de fuentes mediante cámara acústica (beamforming). Análisis de vibraciones estructurales y transmisión mecánica." },
+  { title: "Aislamiento de maquinaria y encapsulado", description: "Diseño y fabricación de cerramientos acústicos para maquinaria industrial: encapsulados totales o parciales, sistemas modulares con acceso operativo, ventilación forzada integrada." },
+  { title: "Cabinas acústicas industriales", description: "Diseño, fabricación e instalación de cabinas para operadores o para aislamiento de equipos específicos." },
+  { title: "Control de vibraciones", description: "Diseño de sistemas de desacoplamiento vibratorio: bancadas antivibratorias, soportes elásticos, juntas flexibles en conducciones." },
+  { title: "Silenciadores acústicos industriales", description: "Diseño y fabricación de silenciadores reactivos y disipativos para flujos de aire, gases de escape y conductos de ventilación industrial." },
+  { title: "Pantallas acústicas industriales", description: "Sistemas de barrera acústica para protección de zonas de trabajo o edificios colindantes frente a fuentes de ruido industrial exterior." },
+  { title: "Monitorización de ruido en tiempo real", description: "Sistemas de monitorización continua para entornos donde la variabilidad temporal del ruido hace insuficiente la medición puntual." },
+  { title: "Mantenimiento predictivo acústico", description: "El análisis acústico y vibratorio de maquinaria puede detectar cambios en el comportamiento mecánico antes de que se manifiesten como avería." },
+];
+---
+
+<BaseLayout
+  title="Acústica industrial | SNA — Ingeniería acústica para entornos de producción"
+  description="Diagnóstico, diseño y ejecución de soluciones acústicas en entornos industriales. Aislamiento de maquinaria, control de vibraciones, cabinas acústicas y monitorización."
+  canonical="https://snaconsultoriaacustica.com/proyectos/acustica-industrial/"
+  jsonLd={jsonLd}
+>
+  <InteriorHero
+    bgImage="/images/acustica-industrial.webp"
+    breadcrumbs={[{ label: "Inicio", href: "/" }, { label: "Proyectos", href: "/proyectos" }, { label: "Acústica industrial" }]}
+    title="Acústica industrial: el ruido como problema de ingeniería."
+    subtitle="En los entornos de producción, el ruido no es únicamente un problema normativo. Es un problema técnico complejo con múltiples fuentes, vías de transmisión y condicionantes operativos. Lo abordamos como tal."
+    lang={lang}
+  >
+    <div class="mt-8">
+      <a href="#proyectos-sector" class="group inline-flex items-center justify-center border border-white text-white px-8 py-4 text-base font-medium rounded-none hover:border-sna-accent hover:text-sna-accent transition-all duration-200">
+        <span class="transition-transform duration-200 group-hover:-translate-x-1">Ver proyectos industriales</span>
+        <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&rarr;</span>
+      </a>
+    </div>
+  </InteriorHero>
+
+  <EditorialBlock title="Más allá de la evaluación de cumplimiento.">
+    <p>El ruido en el entorno industrial tiene causas técnicas precisas: maquinaria de alta potencia, transmisión de vibraciones a la estructura, dinámica de fluidos en instalaciones, interacciones mecánicas entre sistemas. Identificar correctamente esas causas —con rigor y sin simplificaciones— es el punto de partida de cualquier intervención eficaz.</p>
+    <p>En SNA no llegamos a un proyecto industrial con un catálogo de soluciones. Llegamos con la capacidad técnica de entender el problema: caracterizar el campo acústico, localizar las fuentes con precisión, analizar el espectro de frecuencias relevante y modelizar el comportamiento del entorno antes de proponer nada.</p>
+    <p>El resultado es una solución técnicamente fundamentada, dimensionada para el problema real y verificable antes de la ejecución.</p>
+  </EditorialBlock>
+
+  <SectorCapacidades heading="Qué hacemos en acústica industrial." capacidades={capacidades} />
+  <SectorProyectos heading="Proyectos industriales representativos." sectorFilter="Industrial" lang={lang} />
+
+  <SectorNormativa heading="La normativa que regula el ruido en el entorno laboral.">
+    <p>El marco regulatorio de referencia para la protección de los trabajadores frente al ruido es el Real Decreto 286/2006, de 10 de marzo, sobre la protección de la salud y la seguridad de los trabajadores contra los riesgos relacionados con la exposición al ruido.</p>
+    <p>El cumplimiento de este real decreto implica, entre otras acciones, la realización de mediciones acústicas en los puestos de trabajo, la identificación de trabajadores expuestos, la planificación de medidas técnicas y organizativas, y el seguimiento de su eficacia.</p>
+    <p>SNA realiza evaluaciones de exposición al ruido conforme al RD 286/2006 e identifica las medidas de control más adecuadas para cada caso.</p>
+  </SectorNormativa>
+
+  <InteriorCTA title="¿Tienes un problema de ruido industrial que necesita un diagnóstico técnico serio?" buttonLabel="Plantear caso técnico" lang={lang} />
+</BaseLayout>

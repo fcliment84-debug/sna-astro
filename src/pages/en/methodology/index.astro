@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import InteriorHero from "../../../components/interior/InteriorHero.astro";
+import InteriorCTA from "../../../components/interior/InteriorCTA.astro";
+import { Image } from "astro:assets";
+import metodologiaEnfoqueImg from "../../../assets/metodologia/metodologia-enfoque.webp";
+import { localePath } from "../../../data/navigation";
+import { breadcrumbSchema, serviceSchema } from "../../../data/schemas";
+
+const lang = "en";
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: "Home", url: "/en" },
+    { name: "Methodology" },
+  ]),
+  serviceSchema({
+    name: "Acoustic engineering methodology",
+    description: "Technical methodology based on three integrated phases: advanced diagnosis, computational design and execution with final verification.",
+    url: "/en/methodology",
+    capabilities: ["Acoustic diagnosis", "Acoustic solution design", "Execution and verification"],
+  }),
+];
+
+const phasesData = [
+  { num: "01", title: "Diagnosis", text: "Precise analysis of the problem is the most important work we do. We identify sources, frequencies, propagation paths and structural transmission. Without this foundation, any solution is merely a hypothesis.", link: "/metodologia/diagnostico", linkLabel: "See acoustic diagnosis" },
+  { num: "02", title: "Design", text: "With diagnosis as the foundation, we design the technical solution: system and material selection, computational modelling, predictive verification of the result. The goal is to ensure, before execution, that the solution works.", link: "/metodologia/diseno", linkLabel: "See acoustic design" },
+  { num: "03", title: "Execution", text: "We manufacture, install and coordinate the works with full technical responsibility. The execution phase closes the cycle with a final on-site measurement that verifies the result against the project's objective.", link: "/metodologia/ejecucion", linkLabel: "See execution and control" },
+];
+
+const labCards = [
+  { label: "01", title: "Acoustic insulation from 31.5 Hz", desc: "Low-frequency measurements with test rooms designed for high-level standardised testing." },
+  { label: "02", title: "Testing large industrial equipment", desc: "Dimensions and design prepared to evaluate large-format equipment under controlled laboratory conditions." },
+  { label: "03", title: "Silencers and ventilation systems", desc: "Evaluation of acoustic louvres, silencers and HVAC equipment under rigorous technical criteria." },
+];
+
+const boltClip = "polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px)";
+const imgClip = "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)";
+---
+
+<BaseLayout
+  title="Methodology | SNA — Acoustic diagnosis, design and execution"
+  description="Our methodology is based on deep diagnosis of the acoustic problem before any solution proposal. Three integrated phases: diagnosis, design and execution with full technical control."
+  canonical="https://snaconsultoriaacustica.com/en/methodology/"
+  lang="en"
+  jsonLd={jsonLd}
+>
+  <InteriorHero
+    bgImage="/images/metodologia-hero-bg.webp"
+    compact
+    breadcrumbs={[{ label: "Home", href: "/en" }, { label: "Methodology" }]}
+    title="Every acoustic problem is unique. So is our methodology."
+    lang={lang}
+  />
+
+  <section class="py-10 lg:py-14 bg-muted">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {phasesData.map((phase) => (
+          <a href={localePath(phase.link, lang)} class="block">
+            <div
+              class="relative bg-background p-8 flex flex-col group cursor-pointer overflow-hidden transition-all duration-500 h-full shadow-none border-b-2 border-transparent hover:shadow-xl hover:border-sna-accent"
+              style={`clip-path: ${boltClip}`}
+            >
+              <div class="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[hsl(78_83%_60%/0.07)] shadow-[inset_0_0_30px_hsl(78_83%_60%/0.12)]"></div>
+              <span class="absolute top-4 right-6 text-[96px] font-semibold leading-none text-secondary/10 select-none">{phase.num}</span>
+              <span class="text-xs tracking-widest uppercase font-medium transition-colors duration-500 relative z-10 text-primary group-hover:text-sna-accent">Phase {phase.num}</span>
+              <h3 class="text-xl font-medium mt-2 mb-4 relative z-10">{phase.title}</h3>
+              <p class="text-sm leading-relaxed text-foreground/80 flex-1 relative z-10">{phase.text}</p>
+              <span class="mt-6 text-sm font-medium text-primary inline-flex items-center gap-1 relative z-10">
+                <span>{phase.linkLabel}</span>
+                <span class="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 lg:py-28 bg-muted">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <span class="inline-block text-xs font-semibold uppercase tracking-widest text-sna-accent mb-4 font-mono">Coming soon</span>
+      <h2 class="text-2xl lg:text-3xl font-semibold mb-8 max-w-[720px] leading-snug">High-performance acoustic testing laboratory</h2>
+      <div class="space-y-5 text-sm lg:text-base leading-relaxed text-foreground/80 max-w-[800px] mb-14">
+        <p>At SNA Acoustic Consultancy we continue advancing in the development of innovative solutions, and we are pleased to announce the upcoming creation of a new high-performance acoustic testing laboratory. This space has been conceived to offer advanced capabilities in acoustic insulation evaluation, as well as characterisation of equipment and systems under controlled conditions, including low-frequency measurements from 31.5&nbsp;Hz.</p>
+        <p>The laboratory will comprise several interconnected test rooms designed under rigorous technical criteria, enabling not only standardised insulation tests but also the evaluation of silencers, acoustic louvres, ventilation systems and industrial equipment. Thanks to its design and dimensions, this new infrastructure will allow testing of large industrial equipment under laboratory conditions, significantly expanding the scope of acoustic studies. In this way, SNA reinforces its R&D capacity and positions itself as a benchmark in applied acoustic analysis for the industrial, energy and building sectors, offering clients more precise, efficient and tailored solutions.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {labCards.map((item) => (
+          <div class="p-6 border border-primary/15 bg-background">
+            <span class="text-xs font-mono font-semibold text-primary tracking-wider">{item.label}</span>
+            <h3 class="text-base font-semibold mt-2 mb-3">{item.title}</h3>
+            <p class="text-sm text-foreground/80 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 lg:py-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-3">
+        <div class="lg:col-span-5 relative overflow-hidden min-h-[320px] lg:min-h-0" style={`clip-path: ${imgClip}`}>
+          <Image src={metodologiaEnfoqueImg} alt="SNA methodological approach" class="w-full h-full object-cover absolute inset-0" width={800} height={600} loading="lazy" />
+        </div>
+        <div class="lg:col-span-7 flex flex-col justify-center p-8 lg:p-10">
+          <h2 class="text-2xl lg:text-3xl font-semibold mb-8 leading-snug">An approach based on diagnosis, not the catalogue.</h2>
+          <div class="space-y-5 text-sm lg:text-base leading-relaxed text-foreground/80">
+            <p>Most acoustic problems receive answers that do not fit the real problem. Not because the solutions are incorrect in themselves, but because they are applied without sufficiently deep prior analysis. An inadequate material, an oversized solution or intervention on the wrong element not only fail to solve the problem — they sometimes make it worse.</p>
+            <p>At SNA we always start from understanding the physical phenomenon. We analyse the real behaviour of sound in each project's specific environment — its frequencies, its transmission paths, its interaction with the structure — before formulating any proposal. This approach allows us to design efficient solutions: tailored to the real problem, verifiable before execution and measurable in the final result.</p>
+            <p>Our methodology is organised in three phases that are not independent silos but a continuous process of analysis, decision and verification.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <InteriorCTA title="Do you have an acoustic project that needs this level of analysis?" buttonLabel="Request technical analysis" lang={lang} />
+</BaseLayout>

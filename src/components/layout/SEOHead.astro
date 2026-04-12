@@ -1,0 +1,67 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  lang?: "es" | "en";
+  canonical?: string;
+  alternateUrl?: string;
+  ogImage?: string;
+  ogType?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  lang = "es",
+  canonical,
+  alternateUrl,
+  ogImage = "/images/og-default.png",
+  ogType = "website",
+  noindex = false,
+  jsonLd,
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, "") ?? "https://snaconsultoriaacustica.com";
+const canonicalUrl = canonical ?? `${site}${Astro.url.pathname}`;
+const ogImageUrl = ogImage.startsWith("http") ? ogImage : `${site}${ogImage}`;
+const ogLocale = lang === "en" ? "en_GB" : "es_ES";
+const ogLocaleAlt = lang === "en" ? "es_ES" : "en_GB";
+
+/* hreflang: ES URL is x-default (primary language) */
+const esUrl = lang === "es" ? canonicalUrl : (alternateUrl ?? "");
+const enUrl = lang === "en" ? canonicalUrl : (alternateUrl ?? "");
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- hreflang -->
+{esUrl && <link rel="alternate" hreflang="es" href={esUrl} />}
+{enUrl && <link rel="alternate" hreflang="en" href={enUrl} />}
+{esUrl && <link rel="alternate" hreflang="x-default" href={esUrl} />}
+
+<!-- Open Graph -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:locale" content={ogLocale} />
+<meta property="og:locale:alternate" content={ogLocaleAlt} />
+<meta property="og:site_name" content="SNA Consultoría Acústica" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+
+<!-- JSON-LD -->
+{jsonLd && (
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+)}

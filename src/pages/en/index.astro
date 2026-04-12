@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/home/Hero.astro";
+import Pilares from "../../components/home/Pilares.astro";
+import Sectores from "../../components/home/Sectores.astro";
+import Propuesta from "../../components/home/Propuesta.astro";
+import Timeline from "../../components/home/Timeline.astro";
+import Logos from "../../components/home/Logos.astro";
+import CTASection from "../../components/home/CTASection";
+import { organizationSchema, breadcrumbSchema } from "../../data/schemas";
+
+const lang = "en";
+
+const jsonLd = [
+  organizationSchema,
+  breadcrumbSchema([{ name: "Home", url: "/en" }]),
+];
+---
+
+<BaseLayout
+  title="SNA — Acoustic engineering | Specialised technical acoustic consultancy"
+  description="SNA Acoustic Consultancy: over 25 years of experience in acoustic engineering, noise and vibration control. Advanced diagnosis, design and execution of acoustic solutions."
+  canonical="https://snaconsultoriaacustica.com/en/"
+  ogType="website"
+  jsonLd={jsonLd}
+  hideHeaderSpacer
+  lang="en"
+>
+  <Hero lang={lang} />
+  <Pilares lang={lang} />
+  <Sectores lang={lang} />
+  <Propuesta lang={lang} />
+  <Timeline lang={lang} />
+  <Logos lang={lang} />
+  <CTASection lang={lang} client:visible />
+</BaseLayout>

@@ -1,0 +1,406 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BasslockChart from "../../components-react/BasslockChart";
+import { breadcrumbSchema, basslockProductSchema } from "../../data/schemas";
+
+const basslockBrand = `<span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>`;
+
+const title = "Basslock® | Patented metamaterial system for low-frequency acoustic insulation";
+const description = "Basslock® is a patented metamaterial system by SNA that isolates low frequencies while maintaining airflow. 3 to 10 times more attenuation than a conventional panel.";
+const canonical = "https://snaconsultoriaacustica.com/en/basslock";
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: "Home", url: "/en" },
+    { name: "Basslock" },
+  ]),
+  basslockProductSchema,
+];
+
+const subNav = [
+  { label: "Principles", id: "principios" },
+  { label: "Family", id: "familia" },
+  { label: "Certifications", id: "avales" },
+  { label: "Become a distributor", id: "distribuidor" },
+];
+
+const principles = [
+  { num: "01", title: "Geometry", desc: "The spatial arrangement of the system determines how it interacts with sound waves in the low-frequency range." },
+  { num: "02", title: "Structural architecture", desc: "The internal panel configuration creates acoustic behaviours impossible to achieve with porous or conventional mass materials." },
+  { num: "03", title: "Controlled wave interaction", desc: "The system manipulates pressure waves to maximise attenuation at target frequencies without blocking airflow." },
+];
+
+const techHeaders = ["Indicator", "Value"];
+const techData = [
+  { indicador: "Attenuation vs. conventional panel", valor: "3× to 10× higher at low frequency" },
+  { indicador: "Airflow", valor: "Yes, compatible with ventilation" },
+  { indicador: "Tonal components", valor: "Effective elimination of discrete frequency peaks" },
+  { indicador: "Customisation", valor: "Design adapted to the noise spectrum of each installation" },
+];
+
+const products = [
+  { name: "Basslock® Panel", subtitle: "Acoustic panel with airflow.", desc: "Low-frequency acoustic insulation panel for machinery enclosures. The base configuration of the Basslock® system, designed for the acoustic treatment of systems that generate high noise levels during operation and require ventilation." },
+  { name: "Basslock® MP LOUVER", subtitle: "Acoustic panel with airflow.", desc: "Low-frequency acoustic panel for air intakes and exhausts in ventilation systems, designed to work independently or in combination with dissipative silencers, optimising the balance between insulation and airflow." },
+  { name: "Basslock® ROAD-TRAIN", subtitle: "Acoustic barrier with DLR ≥ 40 dB.", desc: "High-performance acoustic barrier system designed to achieve the highest levels of acoustic insulation on the market, with optimised low-frequency behaviour. Applicable to road, rail, and industrial infrastructure." },
+  { name: "Basslock® SHUTTER", subtitle: "Façade acoustic treatment.", desc: "Advanced acoustic solution for façade protection against traffic noise, optimised for urban environments with high noise exposure. Integrates the Basslock® principle into exterior enclosure systems while maintaining ventilation." },
+  { name: "Basslock® MUSIC", subtitle: "Façades for event venues.", desc: "High-performance façade solution for stadiums and event venues, designed for low-frequency control towards the exterior, maintaining required ventilation conditions and ensuring regulatory compliance and environmental compatibility." },
+];
+
+const certs = [
+  { label: "Registered patent", desc: "Basslock® system and product family with derived utility models." },
+  { label: "Acoustic chamber tests", desc: "Performance data verified in an accredited facility." },
+  { label: "Innovative SME", desc: "Certification from the Ministry of Science and Innovation accrediting SNA's R&D&I activity." },
+];
+
+const distAdvantages = [
+  { num: "01", title: "Differentiating product", desc: "Patented technology with no direct competition in the low-frequency market with airflow. Offer your clients a solution no one else can provide." },
+  { num: "02", title: "Engineering technical support", desc: "SNA supports each project with calculation, simulation, and design adapted to the specific case. You don't just sell a product — you sell a complete solution." },
+  { num: "03", title: "On-demand manufacturing", desc: "Each system is manufactured to project specifications, with no inventory needed. You reduce risk and offer a customised solution." },
+];
+
+const distSteps = [
+  { num: "01", title: "Contact us", desc: "With project details or your commercial interest. We analyse your profile and market." },
+  { num: "02", title: "Technical evaluation", desc: "We assess technical feasibility and jointly define the optimal solution for each case." },
+  { num: "03", title: "Manufacturing and support", desc: "We manufacture, deliver, and provide support during installation. We accompany you from start to finish." },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonLd={jsonLd}
+  hideHeaderSpacer={true}
+  lang="en"
+>
+  <!-- Sticky Sub-Nav -->
+  <nav
+    id="basslock-subnav"
+    class="sticky top-16 lg:top-20 z-40 bg-bl-blue/95 backdrop-blur-sm border-b border-white/10 py-2 lg:py-2.5 px-3 lg:px-6 hidden"
+    aria-label="Basslock navigation"
+  >
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-4 lg:gap-10">
+      <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" class="hidden lg:block shrink-0 cursor-pointer">
+        <img src="/images/basslock/wordmark-negativo.webp" alt="Basslock®" class="h-5 lg:h-6 w-auto" />
+      </button>
+      <div class="flex items-center gap-1.5 lg:gap-4">
+        {subNav.map((item) => (
+          <a
+            href={`#${item.id}`}
+            data-nav-target={item.id}
+            class="basslock-nav-btn font-mono text-[10px] lg:text-xs tracking-wide px-2 lg:px-4 py-1.5 lg:py-2 border lg:whitespace-nowrap min-h-[40px] flex items-center justify-center text-center transition-all duration-200 border-white/20 text-white/70 hover:border-bl-lime hover:text-bl-lime"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="relative bg-bl-blue min-h-[70vh] flex items-end overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center opacity-[0.12] pointer-events-none"
+      style="background-image: url('/images/basslock/hero-bg.webp')"
+    ></div>
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-0 lg:pt-36 lg:pb-0 w-full">
+      <div class="mb-10">
+        <img src="/images/basslock/logo-horizontal-negativo-new.webp" alt="Basslock®" class="h-24 lg:h-36 w-auto" />
+      </div>
+
+      <h1 class="text-3xl lg:text-5xl font-semibold text-white max-w-[800px] leading-[1.15] tracking-tight">
+        Low-frequency acoustic insulation with airflow.
+      </h1>
+
+      <p class="mt-6 text-lg text-white/70 max-w-[650px] leading-relaxed">
+        <span class="font-extrabold italic text-white">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span> is a patented system designed to solve one of the most technically challenging problems in acoustics.
+      </p>
+
+      <div class="mt-10 border-t border-white/10 py-3">
+        <div class="flex flex-wrap justify-center gap-3">
+          {subNav.map((item) => (
+            <a
+              href={`#${item.id}`}
+              class="font-mono text-xs tracking-wide px-4 py-2.5 border border-white/20 text-white hover:border-bl-lime hover:text-bl-lime transition-all duration-200"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div id="basslock-sentinel" class="h-0"></div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="py-20 lg:py-28 bg-bl-neutral relative overflow-hidden group/module2">
+    <div
+      class="absolute inset-0 bg-cover bg-center opacity-0 group-hover/module2:opacity-[0.12] transition-opacity duration-500 ease-in-out pointer-events-none"
+      style="background-image: url('/images/basslock-panel-diagram.webp')"
+    ></div>
+    <div class="max-w-[800px] mx-auto px-6 lg:px-8 relative z-10">
+      <h2 data-fade-up class="text-2xl lg:text-[34px] font-semibold leading-tight mb-8 text-bl-blue">
+        Why conventional materials are not enough at low frequencies.
+      </h2>
+      <div class="space-y-6 text-[15px] text-bl-blue/75 leading-relaxed">
+        <p data-fade-up>Low-frequency sound insulation — below 250&nbsp;Hz — is technically different from insulation at mid and high frequencies. The wavelength of low-frequency sound is longer, and its ability to bypass obstacles and propagate through structures is greater. Conventional porous and absorbent materials, effective for mid and high frequencies, only provide 2 to 5&nbsp;dB of insulation at low frequencies.</p>
+        <p data-fade-up>This limitation becomes a real problem in industrial environments where noise sources generate significant emission in the low-frequency range — motors, compressors, HVAC systems, large machinery — and where airflow must be maintained for ventilation or equipment operation.</p>
+        <p data-fade-up>Closing the air passage increases acoustic insulation but prevents proper equipment operation. Conversely, ensuring ventilation limits low-frequency performance. This compromise is not adequately resolved by conventional solutions.</p>
+        <p data-fade-up class="font-medium text-bl-blue">
+          To date, no solution on the market combines a comparable level of low-frequency attenuation with simultaneous ventilation capability. That is the technical space that <span set:html={basslockBrand} /> occupies.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL SOLUTION (PRINCIPLES) -->
+  <section id="principios" class="scroll-mt-[128px] py-20 lg:py-28 bg-white">
+    <div class="max-w-[800px] mx-auto px-6 lg:px-8">
+      <h2 data-fade-up class="text-2xl lg:text-[34px] font-semibold leading-tight mb-8 text-bl-blue">
+        <span set:html={basslockBrand} /> is not a conventional material. It is a metamaterial.
+      </h2>
+      <p data-fade-up class="text-[15px] text-bl-blue/75 leading-relaxed mb-8">
+        An acoustic metamaterial is a structural system designed to exhibit physical properties that do not occur naturally in conventional materials. Rather than relying solely on material mass, the performance of <span set:html={basslockBrand} /> is governed by three principles:
+      </p>
+
+      <div class="space-y-6 mb-10">
+        {principles.map((item, i) => (
+          <div data-fade-up data-fade-delay={i} class="flex gap-5 border-t border-bl-blue/10 pt-6">
+            <span class="font-mono text-sm font-bold text-bl-lime shrink-0">{item.num}</span>
+            <div>
+              <h3 class="font-semibold text-bl-blue mb-1">{item.title}</h3>
+              <p class="text-[15px] text-bl-blue/75 leading-relaxed">{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p data-fade-up class="text-[15px] text-bl-blue/75 leading-relaxed">
+        The result is a system that maintains effective attenuation in the low-frequency range without closing the air passage — something conventional solutions cannot achieve.
+      </p>
+
+      <!-- Chart (React Island) -->
+      <BasslockChart lang="en" client:visible />
+    </div>
+  </section>
+
+  <!-- TECHNICAL DATA -->
+  <section class="py-20 lg:py-28 bg-bl-blue">
+    <div class="max-w-[900px] mx-auto px-6 lg:px-8">
+      <h2 data-fade-up class="text-2xl lg:text-[34px] font-semibold leading-tight mb-4 text-white">
+        Performance verified in acoustic chamber.
+      </h2>
+      <p data-fade-up class="text-[15px] text-white/65 leading-relaxed mb-12 max-w-[650px]">
+        The acoustic performance of <span class="font-extrabold italic text-white">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span> has been tested and verified in an acoustic chamber. Frequency-band attenuation data shows significantly superior performance compared to reference commercial panels in the low-frequency range.
+      </p>
+
+      <div class="border border-white/15 overflow-hidden">
+        <div class="grid grid-cols-2 bg-white/5 font-mono text-xs tracking-wider text-bl-lime uppercase px-6 py-3">
+          <span>{techHeaders[0]}</span>
+          <span>{techHeaders[1]}</span>
+        </div>
+        {techData.map((row, i) => (
+          <div data-fade-up data-fade-delay={i} class="grid grid-cols-2 border-t border-white/10 px-6 py-4">
+            <span class="text-sm font-medium text-white">{row.indicador}</span>
+            <span class="font-mono text-sm text-white/70">{row.valor}</span>
+          </div>
+        ))}
+      </div>
+
+      <div data-fade-up class="grid grid-cols-3 gap-3 mt-10">
+        <img src="/images/basslock/lab-photo3d.bmp" alt="Laboratory test — 3D model of the Basslock system" class="w-full h-auto object-cover" />
+        <img src="/images/basslock/lab-spectral-a.bmp" alt="Laboratory test — spectral analysis model A" class="w-full h-auto object-cover" />
+        <img src="/images/basslock/lab-spectral-b.bmp" alt="Laboratory test — spectral analysis model B" class="w-full h-auto object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT FAMILY -->
+  <section id="familia" class="scroll-mt-[128px] py-20 lg:py-28 bg-bl-neutral">
+    <div class="max-w-[900px] mx-auto px-6 lg:px-8">
+      <h2 data-fade-up class="text-2xl lg:text-[34px] font-semibold leading-tight mb-14 text-bl-blue">
+        A product family for specific applications.
+      </h2>
+
+      <div class="space-y-0">
+        {products.map((prod, i) => (
+          <div data-fade-up data-fade-delay={i} class="border-t border-bl-blue/15 py-8">
+            <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 mb-2">
+              <h3 class="font-mono text-base font-bold text-bl-blue" set:html={prod.name.replace(/Basslock®/g, `<span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>`)} />
+              <span class="text-sm text-bl-blue/70">— {prod.subtitle}</span>
+            </div>
+            <p class="text-[15px] text-bl-blue/75 leading-relaxed" set:html={prod.desc.replace(/Basslock®/g, `<span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>`)} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="avales" class="scroll-mt-[128px] py-20 lg:py-28 bg-bl-blue">
+    <div class="max-w-[900px] mx-auto px-6 lg:px-8">
+      <h2 data-fade-up class="text-2xl lg:text-[34px] font-semibold leading-tight mb-14 text-white">
+        Technical certifications of the system.
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {certs.map((cert, i) => (
+          <div data-fade-up data-fade-delay={i} class="border border-white/15 p-6">
+            <span class="font-mono text-xs font-bold tracking-wider text-bl-lime uppercase block mb-3">{cert.label}</span>
+            <p class="text-sm text-white/65 leading-relaxed" set:html={cert.desc.replace(/Basslock®/g, `<span class="font-extrabold italic text-white">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>`)} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DISTRIBUTOR -->
+  <section id="distribuidor" class="scroll-mt-[128px] py-20 lg:py-28 bg-white">
+    <div class="max-w-[900px] mx-auto px-6 lg:px-8">
+      <div data-fade-up class="flex flex-col lg:flex-row lg:items-start lg:gap-12 mb-14">
+        <div class="flex-1">
+          <h2 class="text-2xl lg:text-[34px] font-semibold leading-tight mb-6 text-bl-blue">
+            Add <span set:html={basslockBrand} /> to your technical offering.
+          </h2>
+          <p class="text-[15px] text-bl-blue/75 leading-relaxed">
+            We are looking for technical partners — distributors, installers, engineering firms — who want to offer their clients real low-frequency insulation solutions. <span set:html={basslockBrand} /> is not a catalogue product: it is a patented technology that solves problems other materials cannot.
+          </p>
+        </div>
+        <div class="shrink-0 mt-8 lg:mt-2">
+          <img src="/images/basslock/logo-color.webp" alt="Basslock®" class="w-48 lg:w-64 h-auto" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        {distAdvantages.map((v, i) => (
+          <div data-fade-up data-fade-delay={i} class="border border-bl-blue/15 p-6 lg:p-8">
+            <span class="font-mono text-xs font-bold tracking-wider text-bl-lime uppercase block mb-4">{v.num}</span>
+            <h3 class="font-semibold text-bl-blue mb-2 text-base">{v.title}</h3>
+            <p class="text-[15px] text-bl-blue/70 leading-relaxed">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div>
+        <h3 data-fade-up class="font-mono text-xs tracking-wider text-bl-blue/70 uppercase mb-8">How does it work?</h3>
+        <div class="space-y-0">
+          {distSteps.map((paso, i) => (
+            <div data-fade-up data-fade-delay={i} class="flex gap-6 border-t border-bl-blue/10 py-8">
+              <span class="font-mono text-3xl lg:text-4xl font-bold text-bl-lime/80 shrink-0 leading-none">{paso.num}</span>
+              <div>
+                <h4 class="font-semibold text-bl-blue mb-1">{paso.title}</h4>
+                <p class="text-[15px] text-bl-blue/70 leading-relaxed">{paso.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div data-fade-up class="mt-14 flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <a
+          href="/en/contact"
+          class="group inline-flex items-center justify-center bg-bl-blue text-white px-8 py-4 text-sm font-medium rounded-none hover:bg-bl-lime hover:text-bl-blue transition-all duration-200"
+        >
+          <span class="transition-transform duration-200 group-hover:-translate-x-1">Request distributor information</span>
+          <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">→</span>
+        </a>
+        <a href="/en/contact" class="text-sm text-bl-blue/75 hover:text-bl-lime transition-colors font-medium">
+          Have a specific project? Submit your technical case →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sticky nav + fade-up script -->
+  <script>
+    function initBasslock() {
+      // Fade-up: set initial hidden state via inline styles (avoids Tailwind layer conflicts)
+      const fadeEls = document.querySelectorAll<HTMLElement>("[data-fade-up]");
+      fadeEls.forEach((el) => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(24px)";
+        el.style.transition = "opacity 0.45s ease, transform 0.45s ease";
+      });
+
+      const fadeObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const delay = parseInt(el.dataset.fadeDelay || "0", 10);
+              setTimeout(() => {
+                el.style.opacity = "1";
+                el.style.transform = "translateY(0)";
+              }, delay * 80);
+              fadeObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      fadeEls.forEach((el) => fadeObserver.observe(el));
+
+      const sentinel = document.getElementById("basslock-sentinel");
+      const subnav = document.getElementById("basslock-subnav");
+      const navBtns = document.querySelectorAll<HTMLAnchorElement>(".basslock-nav-btn");
+      const sectionIds = ["principios", "familia", "avales", "distribuidor"];
+
+      if (!sentinel || !subnav) return;
+
+      // Show/hide sticky nav
+      const checkSticky = () => {
+        const rect = sentinel.getBoundingClientRect();
+        if (rect.bottom < 0) {
+          subnav.classList.remove("hidden");
+        } else {
+          subnav.classList.add("hidden");
+        }
+      };
+      window.addEventListener("scroll", checkSticky, { passive: true });
+      checkSticky();
+
+      // Active section highlight
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              navBtns.forEach((btn) => {
+                const target = btn.getAttribute("data-nav-target");
+                if (target === entry.target.id) {
+                  btn.classList.add("border-bl-lime", "text-bl-lime");
+                  btn.classList.remove("border-white/20", "text-white/70");
+                } else {
+                  btn.classList.remove("border-bl-lime", "text-bl-lime");
+                  btn.classList.add("border-white/20", "text-white/70");
+                }
+              });
+            }
+          });
+        },
+        { rootMargin: "-30% 0px -60% 0px" }
+      );
+
+      sectionIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.getElementById(
+            (link as HTMLAnchorElement).getAttribute("href")!.slice(1)
+          );
+          target?.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initBasslock);
+    } else {
+      initBasslock();
+    }
+  </script>
+</BaseLayout>

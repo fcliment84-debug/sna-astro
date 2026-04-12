@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import InteriorHero from "../../components/interior/InteriorHero.astro";
+import InteriorCTA from "../../components/interior/InteriorCTA.astro";
+import EditorialBlock from "../../components/interior/EditorialBlock.astro";
+import SectorCapacidades from "../../components/sector/SectorCapacidades.astro";
+import SectorProyectos from "../../components/sector/SectorProyectos.astro";
+import SectorNormativa from "../../components/sector/SectorNormativa.astro";
+import { breadcrumbSchema, serviceSchema } from "../../data/schemas";
+
+const lang = "es";
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: "Inicio", url: "/" },
+    { name: "Proyectos", url: "/proyectos" },
+    { name: "Acústica medioambiental" },
+  ]),
+  serviceSchema({
+    name: "Acústica medioambiental",
+    description: "Evaluación de impacto acústico, mapas estratégicos de ruido, pantallas acústicas y soluciones para infraestructuras y planificación urbana.",
+    url: "/proyectos/acustica-medioambiental",
+    capabilities: [
+      "Evaluación de impacto acústico",
+      "Mapas de ruido",
+      "Pantallas y barreras acústicas",
+      "Monitorización ambiental de ruido",
+      "Planes de acción contra el ruido",
+    ],
+  }),
+];
+
+const capacidades = [
+  { title: "Evaluación de impacto acústico", description: "Elaboración de estudios de impacto acústico para nuevas actividades, industrias, infraestructuras o proyectos urbanísticos." },
+  { title: "Mapas de ruido", description: "Elaboración de mapas estratégicos de ruido conforme a la Directiva Europea 2002/49/CE y la Ley 37/2003." },
+  { title: "Pantallas y barreras acústicas", description: "Diseño e instalación de pantallas acústicas para la protección de zonas habitadas frente al ruido de tráfico rodado, ferroviario o de actividades industriales." },
+  { title: "Monitorización de ruido ambiental", description: "Sistemas de monitorización continua para el control del impacto acústico de actividades con variabilidad temporal alta." },
+  { title: "Modelización acústica BEM/FEM", description: "Métodos de elementos de contorno (BEM) y de elementos finitos (FEM) para modelizar con precisión la propagación en entornos geométricamente complejos." },
+];
+---
+
+<BaseLayout
+  title="Acústica medioambiental | SNA — Evaluación de impacto y soluciones de ruido ambiental"
+  description="Evaluación de impacto acústico, mapas de ruido, pantallas acústicas y soluciones para infraestructuras."
+  canonical="https://snaconsultoriaacustica.com/proyectos/acustica-medioambiental/"
+  jsonLd={jsonLd}
+>
+  <InteriorHero
+    bgImage="/images/acustica-medioambiental.webp"
+    breadcrumbs={[{ label: "Inicio", href: "/" }, { label: "Proyectos", href: "/proyectos" }, { label: "Acústica medioambiental" }]}
+    title="Acústica medioambiental: el ruido en el entorno como problema técnico y social."
+    subtitle="El ruido ambiental tiene causas medibles, efectos documentados y soluciones técnicas concretas. Diagnosticamos su comportamiento, evaluamos su impacto y diseñamos las intervenciones necesarias."
+    lang={lang}
+  >
+    <div class="mt-8">
+      <a href="#proyectos-sector" class="group inline-flex items-center justify-center border border-white text-white px-8 py-4 text-base font-medium rounded-none hover:border-sna-accent hover:text-sna-accent transition-all duration-200">
+        <span class="transition-transform duration-200 group-hover:-translate-x-1">Ver proyectos medioambientales</span>
+        <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&rarr;</span>
+      </a>
+    </div>
+  </InteriorHero>
+
+  <EditorialBlock title="Del mapa de ruido a la solución técnica eficaz.">
+    <p>La gestión del ruido ambiental implica un trabajo técnico riguroso en cada fase: la caracterización del campo sonoro en el entorno, la evaluación del impacto sobre las personas y los usos del espacio, la interpretación correcta del marco normativo y el diseño de las medidas de protección más adecuadas.</p>
+    <p>En SNA abordamos proyectos de acústica medioambiental con la misma profundidad de diagnóstico que los proyectos industriales o de edificación.</p>
+    <p>Nuestra capacidad de modelización computacional —incluyendo métodos BEM para la propagación en campo libre— nos permite construir modelos predictivos que optimizan las soluciones de protección antes de ejecutarlas.</p>
+  </EditorialBlock>
+
+  <SectorCapacidades heading="Qué hacemos en acústica medioambiental." capacidades={capacidades} />
+  <SectorProyectos heading="Proyectos medioambientales representativos." sectorFilter="Medioambiental" lang={lang} />
+
+  <SectorNormativa heading="Marco regulatorio del ruido ambiental en España.">
+    <p>La Ley 37/2003, de 17 de noviembre, del Ruido, es la norma marco que regula en España la contaminación acústica.</p>
+    <p>El Real Decreto 1367/2007, de 19 de octubre, desarrolla la Ley 37/2003 en lo que se refiere a la zonificación acústica, objetivos de calidad y emisiones acústicas.</p>
+    <p>El conocimiento preciso de este marco normativo —y de sus implicaciones prácticas para cada tipo de proyecto— es parte del trabajo técnico en acústica medioambiental.</p>
+  </SectorNormativa>
+
+  <InteriorCTA title="¿Necesitas evaluar el impacto acústico de una actividad o proteger un entorno frente al ruido?" buttonLabel="Plantear caso técnico" lang={lang} />
+</BaseLayout>

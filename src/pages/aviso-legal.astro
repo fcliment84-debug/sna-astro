@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { breadcrumbSchema } from "../data/schemas";
+
+const lang = "es";
+
+const jsonLd = breadcrumbSchema([
+  { name: "Inicio", url: "/" },
+  { name: "Aviso legal" },
+]);
+---
+
+<BaseLayout
+  title="Aviso Legal | SNA Consultoría Acústica"
+  description="Aviso legal de SNA Consultoría Acústica. Información sobre identificación, responsabilidad, propiedad intelectual y legislación aplicable."
+  canonical="https://snaconsultoriaacustica.com/aviso-legal/"
+  jsonLd={jsonLd}
+>
+  <section class="pt-32 pb-20 lg:pt-40 lg:pb-28">
+    <article class="max-w-4xl mx-auto px-6 lg:px-8 text-justify leading-relaxed">
+      <h1 class="text-2xl lg:text-3xl font-bold mb-10">Aviso Legal</h1>
+
+      <!-- Identificación -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">Identificación</h2>
+        <div class="rounded-lg bg-muted/60 p-5 text-sm leading-relaxed space-y-1">
+          <p><strong>Razón social:</strong> SNA Consultoría Acústica</p>
+          <p><strong>CIF:</strong> B-24661738</p>
+          <p><strong>Domicilio:</strong> Torre Europa, Paseo de la Castellana, 95, planta 29, 28046 Madrid</p>
+          <p><strong>Teléfono:</strong> 91 838 78 66</p>
+          <p><strong>Email:</strong> info@snaconsultoriaacustica.com</p>
+          <p><strong>Registro Mercantil:</strong> León, Tomo 1270, Libro 0, Folio 57, Sección 8, Hoja LE-22725</p>
+        </div>
+      </div>
+
+      <!-- Objeto -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">Objeto</h2>
+        <p>SNA Consultoría Acústica, a través de su sucursal SNA Consultoría Acústica, responsable del sitio web, pone a disposición de los usuarios el presente documento con el que pretende dar cumplimiento a las obligaciones dispuestas en la Ley 34/2002, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSI-CE), así como informar a todos los usuarios del sitio web respecto a cuáles son las condiciones de uso del mismo. Toda persona que acceda a este sitio web asume el papel de usuario, comprometiéndose a la observancia y cumplimiento riguroso de las disposiciones aquí incluidas, así como a cualquier otra disposición legal que fuera de aplicación. SNA Consultoría Acústica se reserva el derecho a modificar cualquier tipo de información que pudiera aparecer en el sitio web, sin que exista obligación de preavisar o poner en conocimiento de los usuarios dichas obligaciones, entendiéndose como suficiente con la publicación en el sitio web del prestador.</p>
+      </div>
+
+      <!-- Responsabilidad -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">Responsabilidad</h2>
+        <p class="mb-4">SNA Consultoría Acústica se exime de cualquier tipo de responsabilidad derivada de la información publicada en su sitio web, siempre que esta información haya sido manipulada o introducida por un tercero ajeno al mismo.</p>
+        <p class="mb-4">SNA Consultoría Acústica no se hace responsable de la información y contenidos almacenados, a título enunciativo pero no limitativo, en foros, chats, generadores de blogs, comentarios, redes sociales o cualesquier otro medio que permita a terceros publicar contenidos de forma independiente en la página web de SNA Consultoría Acústica.</p>
+        <p>Este sitio web ha sido revisado y probado para que funcione correctamente. En principio, puede garantizarse el correcto funcionamiento los 365 días del año, 24 horas al día. No obstante, SNA Consultoría Acústica no descarta la posibilidad de que existan ciertos errores de programación, o que acontezcan causas de fuerza mayor, catástrofes naturales, huelgas, o circunstancias semejantes que hagan imposible el acceso a la página web.</p>
+      </div>
+
+      <!-- Propiedad intelectual -->
+      <div class="border-b border-sna-gray-line pb-8 mb-8">
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">Propiedad intelectual e industrial</h2>
+        <p class="mb-4">El sitio web, incluyendo a título enunciativo pero no limitativo su programación, edición, compilación y demás elementos necesarios para su funcionamiento, los diseños, logotipos, texto y/o gráficos son propiedad de SNA Consultoría Acústica o en su caso dispone de licencia o autorización expresa por parte de los autores.</p>
+        <p class="mb-4">Independientemente de la finalidad para la que fueran destinados, la reproducción total o parcial, uso, explotación, distribución y comercialización, requiere en todo caso de la autorización escrita previa por parte de SNA Consultoría Acústica.</p>
+        <p>SNA Consultoría Acústica reconoce a favor de sus titulares los correspondientes derechos de propiedad industrial e intelectual, no implicando su sola mención o aparición en el sitio web la existencia de derechos o responsabilidad alguna de SNA Consultoría Acústica sobre los mismos.</p>
+      </div>
+
+      <!-- Ley aplicable -->
+      <div>
+        <h2 class="border-l-2 border-primary pl-3 text-lg font-semibold text-foreground mb-4">Ley aplicable y jurisdicción</h2>
+        <p class="mb-4">Para la resolución de todas las controversias o cuestiones relacionadas con el presente sitio web o de las actividades en él desarrolladas, será de aplicación la legislación española, a la que se someten expresamente las partes, siendo competentes para la resolución de todos los conflictos derivados o relacionados con su uso, cuando proceda en los Juzgados correspondientes según el domicilio del usuario.</p>
+        <p>Igualmente, SNA Consultoría Acústica y el usuario podrán someter sus conflictos a los arbitrajes previstos en la legislación de arbitraje y de defensa de los consumidores y usuarios, y a los procedimientos de resolución extrajudicial de conflictos que se instauren por medio de códigos de conducta u otros instrumentos de autorregulación.</p>
+      </div>
+
+      <!-- Footer info -->
+      <div class="mt-12 pt-8 border-t border-sna-gray-line text-sm text-muted-foreground">
+        <p>SNA Consultoría Acústica</p>
+        <p>Torre Europa, Paseo de la Castellana, 95, planta 29, 28046 Madrid</p>
+        <p>Teléfono: 91 838 78 66</p>
+        <p>Email: info@snaconsultoriaacustica.com</p>
+      </div>
+    </article>
+  </section>
+</BaseLayout>

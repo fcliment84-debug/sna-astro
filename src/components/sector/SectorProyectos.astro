@@ -1,0 +1,67 @@
+---
+import { projects, getProjectThumbnail, localizeProject } from "../../data/projects";
+import { localePath } from "../../data/navigation";
+
+export interface Props {
+  heading: string;
+  sectorFilter: "Industrial" | "Arquitectónico" | "Medioambiental";
+  lang?: "es" | "en";
+}
+
+const { heading, sectorFilter, lang = "es" } = Astro.props;
+
+const sectorProjects = projects.filter((p) => p.sector === sectorFilter);
+const viewProject = { es: "Ver proyecto", en: "View project" };
+
+const sectorColorMap: Record<string, string> = {
+  Industrial: "text-primary",
+  "Arquitectónico": "text-secondary",
+  Medioambiental: "text-sna-green",
+};
+
+const boltClip = "polygon(16px 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%, 0 16px)";
+---
+
+<section id="proyectos-sector" class="scroll-mt-20 lg:scroll-mt-24 py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <h2 class="text-2xl lg:text-[34px] font-semibold mb-12 leading-tight">{heading}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sectorProjects.map((project) => {
+        const t = localizeProject(project, lang);
+        const thumbnail = getProjectThumbnail(project.slug);
+        const colors = sectorColorMap[project.sector] || "text-primary";
+        return (
+          <a
+            href={localePath(`/proyectos/${project.slug}`, lang)}
+            class="group relative block overflow-hidden bg-background transition-all duration-500 shadow-none border-b-2 border-transparent hover:shadow-xl hover:border-sna-accent"
+            style={`clip-path: ${boltClip}`}
+          >
+            <div class="absolute inset-0 z-10 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[hsl(78_83%_60%/0.07)] shadow-[inset_0_0_30px_hsl(78_83%_60%/0.12)]"></div>
+            <div class="overflow-hidden">
+              <div class="aspect-[16/5] bg-muted flex items-center justify-center">
+                {thumbnail ? (
+                  <img src={thumbnail} alt={t.title} class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" />
+                ) : (
+                  <span class="text-xs text-muted-foreground select-none">[Imagen]</span>
+                )}
+              </div>
+            </div>
+            <div class="relative z-20 p-6">
+              <div class="flex items-center gap-1.5 mb-3">
+                <span class:list={["text-[13px] font-medium uppercase tracking-widest transition-colors duration-500 group-hover:text-sna-accent", colors]}>{t.sector}</span>
+                <span class="text-muted-foreground text-[13px]">&middot;</span>
+                <span class="text-[13px] font-medium uppercase tracking-widest text-muted-foreground">{t.solutionType}</span>
+              </div>
+              <h3 class="text-lg font-medium mb-2 leading-snug">{t.title}</h3>
+              <p class="text-sm text-foreground/80 leading-relaxed line-clamp-2 mb-4">{t.tagline}</p>
+              <span class="text-sm font-medium text-primary inline-flex items-center gap-1">
+                <span>{viewProject[lang]}</span>
+                <span class="transition-transform duration-200 group-hover:translate-x-1">&rarr;</span>
+              </span>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</section>
