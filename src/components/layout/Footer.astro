@@ -22,6 +22,7 @@ const texts = {
     copyright: "© 2026 SNA Consultoría Acústica. Todos los derechos reservados.",
     legal: "Aviso legal",
     privacy: "Política de privacidad",
+    cookies: "Política de cookies",
   },
   en: {
     desc: "Acoustic engineering consultancy specialised in advanced diagnosis, design, and execution.",
@@ -39,6 +40,7 @@ const texts = {
     copyright: "© 2026 SNA Acoustic Consultancy. All rights reserved.",
     legal: "Legal notice",
     privacy: "Privacy policy",
+    cookies: "Cookie policy",
   },
 };
 
@@ -57,6 +59,7 @@ function lp(esPath: string) {
     "/proyectos/acustica-medioambiental": "/en/projects/environmental-acoustics",
     "/aviso-legal": "/en/legal-notice",
     "/politica-de-privacidad": "/en/privacy-policy",
+    "/politica-de-cookies": "/en/cookie-policy",
   };
   return map[esPath] ?? `/en${esPath}`;
 }
@@ -132,6 +135,7 @@ const switchHref = switchPath(Astro.url.pathname);
         <nav class="flex gap-6" aria-label="Legal">
           <a href={lp("/aviso-legal")} class="text-sm text-white/60 hover:text-sna-accent transition-colors">{t.legal}</a>
           <a href={lp("/politica-de-privacidad")} class="text-sm text-white/60 hover:text-sna-accent transition-colors">{t.privacy}</a>
+          <a href={lp("/politica-de-cookies")} class="text-sm text-white/60 hover:text-sna-accent transition-colors">{t.cookies}</a>
         </nav>
         <a
           href={switchHref}
