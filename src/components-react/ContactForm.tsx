@@ -7,6 +7,7 @@ interface Props {
 const texts = {
   es: {
     name: "Nombre",
+    surname: "Apellidos",
     company: "Empresa",
     email: "Email",
     phone: "Teléfono",
@@ -31,6 +32,7 @@ const texts = {
   },
   en: {
     name: "Name",
+    surname: "Surname",
     company: "Company",
     email: "Email",
     phone: "Phone",
@@ -62,6 +64,7 @@ export default function ContactForm({ lang = "es" }: Props) {
   const t = texts[lang];
   const [formData, setFormData] = useState({
     nombre: "",
+    apellidos: "",
     empresa: "",
     email: "",
     telefono: "",
@@ -110,7 +113,7 @@ export default function ContactForm({ lang = "es" }: Props) {
         <button
           onClick={() => {
             setStatus("idle");
-            setFormData({ nombre: "", empresa: "", email: "", telefono: "", tipoProyecto: "", mensaje: "" });
+            setFormData({ nombre: "", apellidos: "", empresa: "", email: "", telefono: "", tipoProyecto: "", mensaje: "" });
             setAcceptPrivacy(false);
           }}
           className="text-sm text-primary hover:text-primary/80 underline transition-colors"
@@ -123,9 +126,15 @@ export default function ContactForm({ lang = "es" }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div>
-        <label htmlFor="cf-nombre" className="block text-sm font-medium mb-1.5">{t.name}</label>
-        <input id="cf-nombre" name="nombre" type="text" required value={formData.nombre} onChange={handleChange} className={inputClass} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label htmlFor="cf-nombre" className="block text-sm font-medium mb-1.5">{t.name}</label>
+          <input id="cf-nombre" name="nombre" type="text" required value={formData.nombre} onChange={handleChange} className={inputClass} />
+        </div>
+        <div>
+          <label htmlFor="cf-apellidos" className="block text-sm font-medium mb-1.5">{t.surname}</label>
+          <input id="cf-apellidos" name="apellidos" type="text" required value={formData.apellidos} onChange={handleChange} className={inputClass} />
+        </div>
       </div>
       <div>
         <label htmlFor="cf-empresa" className="block text-sm font-medium mb-1.5">{t.company}</label>

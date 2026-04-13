@@ -21,9 +21,9 @@ const projectTypeLabels: Record<string, string> = {
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
-    const { nombre, empresa, email, telefono, tipoProyecto, mensaje } = body;
+    const { nombre, apellidos, empresa, email, telefono, tipoProyecto, mensaje } = body;
 
-    if (!nombre || !empresa || !email || !mensaje) {
+    if (!nombre || !apellidos || !empresa || !email || !mensaje) {
       return new Response(
         JSON.stringify({ error: "Faltan campos obligatorios" }),
         { status: 400, headers: { "Content-Type": "application/json" } }
@@ -31,12 +31,13 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     const tipoLabel = projectTypeLabels[tipoProyecto] || tipoProyecto || "No especificado";
+    const nombreCompleto = `${nombre} ${apellidos}`;
 
     const { error } = await resend.emails.send({
       from: "SNA Web <web@snaconsultoriaacustica.com>",
       to: TO_ADDRESSES,
       replyTo: email,
-      subject: `Nueva consulta web — ${nombre} (${empresa})`,
+      subject: `Nueva consulta web — ${nombreCompleto} (${empresa})`,
       html: `
         <div style="font-family: 'Inter', Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #4A4A4A;">
           <div style="background-color: #4F7E87; padding: 24px 32px;">
@@ -47,6 +48,10 @@ export const POST: APIRoute = async ({ request }) => {
               <tr>
                 <td style="padding: 8px 0; font-weight: 600; width: 140px; vertical-align: top;">Nombre</td>
                 <td style="padding: 8px 0;">${nombre}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: 600; vertical-align: top;">Apellidos</td>
+                <td style="padding: 8px 0;">${apellidos}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; font-weight: 600; vertical-align: top;">Empresa</td>
@@ -85,7 +90,7 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Confirmation email to the user (fire-and-forget)
+    // Confirmation email to the user (fire-and-forget — uses only first name)
     resend.emails.send({
       from: "SNA Consultoría Acústica <web@snaconsultoriaacustica.com>",
       to: email,

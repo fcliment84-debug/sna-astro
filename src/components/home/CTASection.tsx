@@ -10,6 +10,7 @@ const texts = {
     sub: "Plantéanos el caso. Analizamos el problema y te indicamos cómo podemos abordarlo.",
     note: "Respondemos en un plazo máximo de 48 horas hábiles. La primera consulta no tiene coste.",
     name: "Nombre",
+    surname: "Apellidos",
     company: "Empresa",
     email: "Email",
     phone: "Teléfono",
@@ -37,6 +38,7 @@ const texts = {
     sub: "Tell us about your case. We'll analyse the problem and explain how we can address it.",
     note: "We respond within a maximum of 48 business hours. The first consultation is free of charge.",
     name: "Name",
+    surname: "Surname",
     company: "Company",
     email: "Email",
     phone: "Phone",
@@ -68,6 +70,7 @@ export default function CTASection({ lang = "es" }: Props) {
   const t = texts[lang];
   const [formData, setFormData] = useState({
     nombre: "",
+    apellidos: "",
     empresa: "",
     email: "",
     telefono: "",
@@ -115,7 +118,7 @@ export default function CTASection({ lang = "es" }: Props) {
       <button
         onClick={() => {
           setStatus("idle");
-          setFormData({ nombre: "", empresa: "", email: "", telefono: "", tipoProyecto: "", mensaje: "" });
+          setFormData({ nombre: "", apellidos: "", empresa: "", email: "", telefono: "", tipoProyecto: "", mensaje: "" });
           setAcceptPrivacy(false);
         }}
         className="text-sm text-primary hover:text-primary/80 underline transition-colors"
@@ -127,9 +130,15 @@ export default function CTASection({ lang = "es" }: Props) {
 
   const formBlock = (
     <form onSubmit={handleSubmit} className="space-y-5">
-      <div>
-        <label htmlFor="cta-nombre" className="block text-sm font-medium mb-1.5">{t.name}</label>
-        <input id="cta-nombre" name="nombre" type="text" required value={formData.nombre} onChange={handleChange} className={inputClass} />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label htmlFor="cta-nombre" className="block text-sm font-medium mb-1.5">{t.name}</label>
+          <input id="cta-nombre" name="nombre" type="text" required value={formData.nombre} onChange={handleChange} className={inputClass} />
+        </div>
+        <div>
+          <label htmlFor="cta-apellidos" className="block text-sm font-medium mb-1.5">{t.surname}</label>
+          <input id="cta-apellidos" name="apellidos" type="text" required value={formData.apellidos} onChange={handleChange} className={inputClass} />
+        </div>
       </div>
       <div>
         <label htmlFor="cta-empresa" className="block text-sm font-medium mb-1.5">{t.company}</label>
