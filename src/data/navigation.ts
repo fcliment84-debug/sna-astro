@@ -48,6 +48,7 @@ export const routeMap: Record<string, string> = {
   "/contacto": "/en/contact",
   "/aviso-legal": "/en/legal-notice",
   "/politica-de-privacidad": "/en/privacy-policy",
+  "/politica-de-cookies": "/en/cookie-policy",
 };
 
 /** Dynamic prefix mapping for routes not in the static routeMap */
