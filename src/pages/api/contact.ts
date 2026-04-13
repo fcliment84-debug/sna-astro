@@ -6,7 +6,7 @@ import { Resend } from "resend";
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
 const TO_ADDRESSES = [
-  "snaconsultoriaacustica@gmail.com",
+  "snaconsultoriacustica@gmail.com",
   "info@snaconsultoriaacustica.com",
 ];
 
