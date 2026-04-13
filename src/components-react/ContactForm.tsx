@@ -91,7 +91,8 @@ export default function ContactForm({ lang = "es" }: Props) {
         body: JSON.stringify(formData),
       });
       if (res.ok) {
-        setStatus("success");
+        window.location.href = lang === "en" ? "/en/form-sent" : "/formulario-enviado";
+        return;
       } else {
         setStatus("error");
       }
@@ -99,30 +100,6 @@ export default function ContactForm({ lang = "es" }: Props) {
       setStatus("error");
     }
   };
-
-  if (status === "success") {
-    return (
-      <div className="text-center py-12">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-sna-accent/20 mb-6">
-          <svg className="w-8 h-8 text-sna-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3 className="text-xl font-semibold mb-2">{t.successTitle}</h3>
-        <p className="text-foreground/80 mb-8">{t.successMsg}</p>
-        <button
-          onClick={() => {
-            setStatus("idle");
-            setFormData({ nombre: "", apellidos: "", empresa: "", email: "", telefono: "", tipoProyecto: "", mensaje: "" });
-            setAcceptPrivacy(false);
-          }}
-          className="text-sm text-primary hover:text-primary/80 underline transition-colors"
-        >
-          {t.newQuery}
-        </button>
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">

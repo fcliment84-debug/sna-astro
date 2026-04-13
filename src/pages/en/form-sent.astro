@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const lang = "en";
+---
+
+<BaseLayout
+  title="Form sent | SNA Acoustic Consultancy"
+  description="Your enquiry has been sent successfully."
+  lang="en"
+  noindex={true}
+>
+  <section class="min-h-[70vh] flex items-center justify-center py-20 lg:py-28">
+    <div class="max-w-xl mx-auto px-6 lg:px-8 text-center">
+      <a href="/en" class="inline-block mb-10">
+        <img
+          src="/images/logo_SNA_positivo.webp"
+          alt="SNA Acoustic Consultancy"
+          class="h-14 w-auto mx-auto"
+        />
+      </a>
+
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-sna-accent/20 mb-8">
+        <svg class="w-10 h-10 text-sna-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h1 class="text-2xl lg:text-3xl font-semibold mb-4">Form sent successfully!</h1>
+      <p class="text-base text-foreground/80 leading-relaxed mb-2">You will also receive a confirmation email.</p>
+      <p class="text-base text-foreground/80 leading-relaxed mb-10">Thank you for contacting <strong>SNA Acoustic Consultancy</strong>.</p>
+
+      <a
+        href="/en"
+        class="group inline-flex items-center justify-center bg-primary text-primary-foreground px-8 py-4 text-base font-medium rounded-none hover:bg-sna-accent hover:text-sna-dark transition-all duration-200"
+      >
+        <span class="transition-transform duration-200 group-hover:-translate-x-1">Back to SNA</span>
+        <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&rarr;</span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
