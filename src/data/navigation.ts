@@ -46,7 +46,7 @@ export const routeMap: Record<string, string> = {
   "/basslock": "/en/basslock",
   "/basslock-distribuidores": "/en/basslock-distributors",
   "/basslock-solicitud-enviada": "/en/basslock-application-sent",
-  "/sobre-nosotros": "/en/about-us",
+  "/sobre-nosotros": "/en/about",
   "/contacto": "/en/contact",
   "/aviso-legal": "/en/legal-notice",
   "/politica-de-privacidad": "/en/privacy-policy",
