@@ -44,6 +44,8 @@ export const routeMap: Record<string, string> = {
   "/proyectos/acustica-arquitectonica": "/en/projects/architectural-acoustics",
   "/proyectos/acustica-medioambiental": "/en/projects/environmental-acoustics",
   "/basslock": "/en/basslock",
+  "/basslock-distribuidores": "/en/basslock-distributors",
+  "/basslock-solicitud-enviada": "/en/basslock-application-sent",
   "/sobre-nosotros": "/en/about-us",
   "/contacto": "/en/contact",
   "/aviso-legal": "/en/legal-notice",

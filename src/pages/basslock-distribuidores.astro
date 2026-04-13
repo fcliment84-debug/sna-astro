@@ -1,0 +1,406 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { breadcrumbSchema } from "../data/schemas";
+
+const basslockBrand = `<span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>`;
+
+const title = "Programa de distribución Basslock® | SNA Consultoría Acústica";
+const description = "Formulario para empresas interesadas en distribuir Basslock®, el sistema metamaterial patentado de aislamiento acústico en baja frecuencia con paso de aire.";
+const canonical = "https://snaconsultoriaacustica.com/basslock-distribuidores";
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: "Inicio", url: "/" },
+    { name: "Basslock", url: "/basslock" },
+    { name: "Programa de distribución" },
+  ]),
+];
+
+const activityOptions = [
+  "Ingeniería acústica",
+  "Instalación de soluciones acústicas",
+  "Distribución de materiales acústicos",
+  "Construcción / rehabilitación",
+  "Otra",
+];
+
+const sectorOptions = [
+  "Industrial",
+  "Edificación",
+  "Infraestructuras",
+  "Data Centers",
+  "Entretenimiento / espectáculos",
+  "Otro",
+];
+
+const productOptions = [
+  "Basslock® Panel",
+  "Basslock® MP LOUVER",
+  "Basslock® ROAD-TRAIN",
+  "Basslock® SHUTTER",
+  "Basslock® MUSIC",
+  "Toda la familia",
+];
+
+const volumeOptions = [
+  "Menos de 5",
+  "5 – 15",
+  "15 – 30",
+  "Más de 30",
+];
+
+const sourceOptions = [
+  "Web de SNA",
+  "Recomendación profesional",
+  "Feria o evento del sector",
+  "Publicación técnica",
+  "LinkedIn",
+  "Otro",
+];
+
+const ccaaOptions = [
+  "Andalucía", "Aragón", "Asturias", "Baleares", "Canarias",
+  "Cantabria", "Castilla-La Mancha", "Castilla y León", "Cataluña",
+  "Comunidad Valenciana", "Extremadura", "Galicia", "La Rioja",
+  "Madrid", "Murcia", "Navarra", "País Vasco", "Ceuta", "Melilla",
+  "Fuera de España",
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonLd={jsonLd}
+  hideHeaderSpacer={true}
+>
+  <!-- HERO -->
+  <section class="relative bg-bl-blue flex items-end overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center opacity-[0.08] pointer-events-none"
+      style="background-image: url('/images/basslock/hero-bg.webp')"
+    ></div>
+    <div class="relative max-w-[900px] mx-auto px-6 lg:px-8 pt-28 pb-14 lg:pt-36 lg:pb-20 w-full">
+      <a href="/basslock" class="inline-block mb-8 group">
+        <img src="/images/basslock/logo-horizontal-negativo-new.webp" alt="Basslock®" class="h-16 lg:h-20 w-auto opacity-80 group-hover:opacity-100 transition-opacity" />
+      </a>
+
+      <h1 class="text-2xl lg:text-[40px] font-semibold text-white max-w-[700px] leading-[1.15] tracking-tight">
+        Programa de distribución
+      </h1>
+
+      <p class="mt-6 text-[15px] text-white/65 max-w-[600px] leading-relaxed">
+        <span set:html={basslockBrand} class="text-white" /> está disponible para empresas con capacidad técnica en el ámbito de la acústica. Si su actividad incluye la prescripción, instalación o distribución de soluciones acústicas y quiere evaluar la incorporación de <span set:html={basslockBrand} class="text-white" /> a su oferta, complete este formulario. Nos pondremos en contacto para analizar conjuntamente las posibilidades de colaboración.
+      </p>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="py-16 lg:py-24 bg-bl-neutral">
+    <div class="max-w-[700px] mx-auto px-6 lg:px-8">
+
+      <form id="distributor-form" class="space-y-16" novalidate>
+
+        <!-- Honeypot -->
+        <div class="hidden" aria-hidden="true">
+          <label for="website_url">Website</label>
+          <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <!-- BLOQUE 1: IDENTIFICACIÓN -->
+        <fieldset>
+          <legend class="sr-only">Identificación de la empresa</legend>
+
+          <div class="space-y-6">
+            <!-- Empresa -->
+            <div>
+              <label for="company" class="block text-sm font-medium text-bl-blue mb-2">Nombre de la empresa <span class="text-bl-lime">*</span></label>
+              <input type="text" id="company" name="company" required
+                class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue placeholder:text-bl-blue/40 focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors" placeholder="Nombre comercial o razón social" />
+            </div>
+
+            <!-- Web -->
+            <div>
+              <label for="website" class="block text-sm font-medium text-bl-blue mb-2">Sitio web</label>
+              <input type="url" id="website" name="website"
+                class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue placeholder:text-bl-blue/40 focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors" placeholder="https://" />
+            </div>
+
+            <!-- Contacto -->
+            <div>
+              <label for="contact_name" class="block text-sm font-medium text-bl-blue mb-2">Persona de contacto <span class="text-bl-lime">*</span></label>
+              <input type="text" id="contact_name" name="contact_name" required
+                class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue placeholder:text-bl-blue/40 focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors" placeholder="Nombre y apellidos" />
+            </div>
+
+            <!-- Email + Teléfono -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="email" class="block text-sm font-medium text-bl-blue mb-2">Email profesional <span class="text-bl-lime">*</span></label>
+                <input type="email" id="email" name="email" required
+                  class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue placeholder:text-bl-blue/40 focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors" placeholder="nombre@empresa.com" />
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-bl-blue mb-2">Teléfono <span class="text-bl-lime">*</span></label>
+                <input type="tel" id="phone" name="phone" required
+                  class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue placeholder:text-bl-blue/40 focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors" placeholder="+34 600 000 000" />
+              </div>
+            </div>
+
+            <!-- CCAA -->
+            <div>
+              <label for="region" class="block text-sm font-medium text-bl-blue mb-2">Comunidad Autónoma <span class="text-bl-lime">*</span></label>
+              <select id="region" name="region" required
+                class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%233b5c63%22%20d%3D%22M2%204l4%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px] bg-[right_16px_center] bg-no-repeat">
+                <option value="">Seleccionar</option>
+                {ccaaOptions.map((cc) => <option value={cc}>{cc}</option>)}
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- BLOQUE 2: PERFIL TÉCNICO -->
+        <fieldset>
+          <legend class="sr-only">Perfil técnico y comercial</legend>
+
+          <div class="space-y-8">
+            <!-- Tipo de actividad -->
+            <div>
+              <span class="block text-sm font-medium text-bl-blue mb-3">Tipo de actividad <span class="text-bl-lime">*</span></span>
+              <div class="space-y-2">
+                {activityOptions.map((opt) => (
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input type="checkbox" name="activity" value={opt}
+                      class="w-4 h-4 border-bl-blue/30 text-bl-blue focus:ring-bl-blue/20 accent-bl-blue" />
+                    <span class="text-sm text-bl-blue/75 group-hover:text-bl-blue transition-colors">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Sectores -->
+            <div>
+              <span class="block text-sm font-medium text-bl-blue mb-3">Sectores en los que opera <span class="text-bl-lime">*</span></span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {sectorOptions.map((opt) => (
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input type="checkbox" name="sectors" value={opt}
+                      class="w-4 h-4 border-bl-blue/30 text-bl-blue focus:ring-bl-blue/20 accent-bl-blue" />
+                    <span class="text-sm text-bl-blue/75 group-hover:text-bl-blue transition-colors">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Capacidad técnica -->
+            <div>
+              <span class="block text-sm font-medium text-bl-blue mb-3">¿Cuenta su empresa con capacidad técnica propia para prescripción acústica? <span class="text-bl-lime">*</span></span>
+              <div class="flex flex-wrap gap-4">
+                {["Sí", "No", "Parcialmente"].map((opt) => (
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="radio" name="technical_capacity" value={opt} required
+                      class="w-4 h-4 border-bl-blue/30 text-bl-blue focus:ring-bl-blue/20 accent-bl-blue" />
+                    <span class="text-sm text-bl-blue/75 group-hover:text-bl-blue transition-colors">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Volumen -->
+            <div>
+              <label for="volume" class="block text-sm font-medium text-bl-blue mb-2">Proyectos/año donde la baja frecuencia es un factor relevante</label>
+              <select id="volume" name="volume"
+                class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%233b5c63%22%20d%3D%22M2%204l4%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px] bg-[right_16px_center] bg-no-repeat">
+                <option value="">Seleccionar</option>
+                {volumeOptions.map((v) => <option value={v}>{v}</option>)}
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- BLOQUE 3: INTERÉS EN BASSLOCK -->
+        <fieldset>
+          <legend class="sr-only">Interés en Basslock</legend>
+
+          <div class="space-y-8">
+            <!-- Productos -->
+            <div>
+              <span class="block text-sm font-medium text-bl-blue mb-3">¿Qué productos de la familia le interesan?</span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {productOptions.map((opt) => (
+                  <label class="flex items-center gap-3 cursor-pointer group">
+                    <input type="checkbox" name="products" value={opt}
+                      class="w-4 h-4 border-bl-blue/30 text-bl-blue focus:ring-bl-blue/20 accent-bl-blue" />
+                    <span class="text-sm text-bl-blue/75 group-hover:text-bl-blue transition-colors">{opt}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Proyecto concreto -->
+            <div>
+              <span class="block text-sm font-medium text-bl-blue mb-3">¿Tiene actualmente algún proyecto concreto donde Basslock podría aplicarse?</span>
+              <div class="flex gap-4 mb-4">
+                {["Sí", "No"].map((opt) => (
+                  <label class="flex items-center gap-2 cursor-pointer group">
+                    <input type="radio" name="has_project" value={opt}
+                      class="w-4 h-4 border-bl-blue/30 text-bl-blue focus:ring-bl-blue/20 accent-bl-blue project-toggle" />
+                    <span class="text-sm text-bl-blue/75 group-hover:text-bl-blue transition-colors">{opt}</span>
+                  </label>
+                ))}
+              </div>
+              <div id="project-detail" class="hidden">
+                <label for="project_description" class="block text-sm font-medium text-bl-blue mb-2">Breve descripción del proyecto o aplicación</label>
+                <textarea id="project_description" name="project_description" rows="3"
+                  class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue placeholder:text-bl-blue/40 focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors resize-y" placeholder="Tipo de instalación, fuente de ruido, requisitos..."></textarea>
+              </div>
+            </div>
+
+            <!-- Fuente -->
+            <div>
+              <label for="source" class="block text-sm font-medium text-bl-blue mb-2">¿Cómo ha conocido Basslock?</label>
+              <select id="source" name="source"
+                class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%233b5c63%22%20d%3D%22M2%204l4%204%204-4%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px] bg-[right_16px_center] bg-no-repeat">
+                <option value="">Seleccionar</option>
+                {sourceOptions.map((s) => <option value={s}>{s}</option>)}
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- PRIVACIDAD + SUBMIT -->
+        <div class="border-t border-bl-blue/10 pt-10 space-y-6">
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input type="checkbox" name="privacy" required
+              class="w-4 h-4 mt-0.5 border-bl-blue/30 text-bl-blue focus:ring-bl-blue/20 accent-bl-blue" />
+            <span class="text-xs text-bl-blue/60 leading-relaxed group-hover:text-bl-blue/80 transition-colors">
+              He leído y acepto la <a href="/politica-de-privacidad" class="underline hover:text-bl-blue transition-colors">política de privacidad</a>. Los datos facilitados serán tratados exclusivamente para gestionar su solicitud de información sobre el programa de distribución de Basslock®. <span class="text-bl-lime">*</span>
+            </span>
+          </label>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <button type="submit"
+              class="group inline-flex items-center justify-center bg-bl-blue text-white px-8 py-4 text-sm font-medium rounded-none hover:bg-bl-lime hover:text-bl-blue transition-all duration-200 cursor-pointer">
+              <span class="transition-transform duration-200 group-hover:-translate-x-1">Enviar solicitud</span>
+              <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">→</span>
+            </button>
+            <a href="/basslock" class="text-sm text-bl-blue/60 hover:text-bl-blue transition-colors">
+              ← Volver a Basslock
+            </a>
+          </div>
+        </div>
+
+        <!-- Error message (hidden by default) -->
+        <div id="form-error" class="hidden border border-red-300 bg-red-50 p-6 text-center">
+          <p class="text-sm text-red-700 leading-relaxed">Ha ocurrido un error al enviar la solicitud. Inténtelo de nuevo o escríbanos a <a href="mailto:info@snaconsultoriaacustica.com" class="underline">info@snaconsultoriaacustica.com</a></p>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <script>
+    function initDistributorForm() {
+      // Toggle project description
+      const toggles = document.querySelectorAll<HTMLInputElement>('.project-toggle');
+      const detail = document.getElementById('project-detail');
+      toggles.forEach((radio) => {
+        radio.addEventListener('change', () => {
+          if (detail) {
+            detail.classList.toggle('hidden', radio.value !== 'Sí');
+          }
+        });
+      });
+
+      const form = document.getElementById('distributor-form') as HTMLFormElement | null;
+      const errorBox = document.getElementById('form-error');
+      const submitBtn = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const submitLabel = submitBtn?.querySelector('span:first-child');
+
+      if (form) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+          // Honeypot check
+          const hp = form.querySelector<HTMLInputElement>('[name="website_url"]');
+          if (hp && hp.value) return;
+
+          // Collect data — use getAll for checkbox groups
+          const fd = new FormData(form);
+          const payload = {
+            company: fd.get('company'),
+            website: fd.get('website'),
+            contact_name: fd.get('contact_name'),
+            email: fd.get('email'),
+            phone: fd.get('phone'),
+            region: fd.get('region'),
+            activity: fd.getAll('activity'),
+            sectors: fd.getAll('sectors'),
+            technical_capacity: fd.get('technical_capacity'),
+            volume: fd.get('volume'),
+            products: fd.getAll('products'),
+            has_project: fd.get('has_project'),
+            project_description: fd.get('project_description'),
+            source: fd.get('source'),
+          };
+
+          // UI: disable button
+          if (submitBtn) submitBtn.disabled = true;
+          if (submitLabel) submitLabel.textContent = 'Enviando...';
+          if (errorBox) errorBox.classList.add('hidden');
+
+          try {
+            const res = await fetch('/api/distributor', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+            if (res.ok) {
+              window.location.href = '/basslock-solicitud-enviada';
+              return;
+            }
+            throw new Error('Server error');
+          } catch {
+            if (errorBox) errorBox.classList.remove('hidden');
+            if (submitBtn) submitBtn.disabled = false;
+            if (submitLabel) submitLabel.textContent = 'Enviar solicitud';
+          }
+        });
+      }
+
+      // Fade-up animations
+      const fadeEls = document.querySelectorAll<HTMLElement>('[data-fade-up]');
+      fadeEls.forEach((el) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+      });
+      const fadeObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const delay = parseInt(el.dataset.fadeDelay || '0', 10);
+              setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+              }, delay * 80);
+              fadeObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      fadeEls.forEach((el) => fadeObserver.observe(el));
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDistributorForm);
+    } else {
+      initDistributorForm();
+    }
+  </script>
+</BaseLayout>
