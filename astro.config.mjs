@@ -3,10 +3,12 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
+import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   site: 'https://snaconsultoriaacustica.com',
   output: 'static',
+  adapter: vercel(),
   redirects: {
     '/nosotros': '/sobre-nosotros',
     '/privacidad': '/politica-de-privacidad',
