@@ -118,8 +118,8 @@ export const POST: APIRoute = async ({ request }) => {
               </table>
               <p style="margin: 12px 0 0; font-size: 14px; font-style: italic; color: #666; white-space: pre-wrap; line-height: 1.5;">"${mensaje}"</p>
             </div>
-            <p style="margin: 24px 0 16px; line-height: 1.6;">Si necesitas comunicarnos algo adicional antes de nuestra respuesta, puedes escribirnos directamente a <a href="mailto:info@snaconsultoriaacustica.com" style="color: #4F7E87; font-weight: 600;">info@snaconsultoriaacustica.com</a> o llamarnos al <a href="tel:+34918387866" style="color: #4F7E87; font-weight: 600;">91 838 78 66</a>.</p>
-            <p style="margin: 0; line-height: 1.6;">Un saludo,<br/><strong>Equipo técnico de SNA</strong></p>
+            <p style="margin: 24px 0 16px; line-height: 1.6;">Si necesitas comunicarnos algo adicional antes de nuestra respuesta, puedes escribirnos directamente a <a href="mailto:info@snaconsultoriaacustica.com" style="color: #4F7E87; font-weight: 600;">info@snaconsultoriaacustica.com</a>, llamarnos al <a href="tel:+34918387866" style="color: #4F7E87; font-weight: 600;">91 838 78 66</a> o contactarnos por <a href="https://wa.me/34669307211" style="color: #25D366; font-weight: 600;">WhatsApp</a>.</p>
+            <p style="margin: 0; line-height: 1.6;">Un saludo,<br/><strong>El equipo técnico de SNA</strong></p>
           </div>
           <div style="padding: 16px 32px; background-color: #4A4A4A; text-align: center;">
             <p style="color: #8FA8AE; font-size: 12px; margin: 0 0 4px;">SNA Consultoría Acústica</p>
