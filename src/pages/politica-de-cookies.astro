@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { breadcrumbSchema } from "../data/schemas";
+
+const lang = "es";
+
+const jsonLd = breadcrumbSchema([
+  { name: "Inicio", url: "/" },
+  { name: "Política de Cookies" },
+]);
+---
+
+<BaseLayout
+  title="Política de Cookies | SNA Consultoría Acústica"
+  description="Información sobre las cookies utilizadas en snaconsultoriaacustica.com. Revisa y gestiona tu consentimiento."
+  canonical="https://snaconsultoriaacustica.com/politica-de-cookies/"
+  jsonLd={jsonLd}
+>
+  <section class="pt-32 pb-20 lg:pt-40 lg:pb-28">
+    <article class="max-w-4xl mx-auto px-6 lg:px-8 text-justify leading-relaxed">
+      <h1 class="text-2xl lg:text-3xl font-bold mb-10">Política de Cookies</h1>
+      <p class="mb-8">En esta página puede consultar en detalle las cookies que utiliza este sitio web y gestionar sus preferencias de consentimiento.</p>
+
+      <!-- Cookiebot Cookie Declaration -->
+      <div class="cookie-declaration">
+        <script is:inline id="CookieDeclaration" src="https://consent.cookiebot.com/92f8a6c8-0c0c-4a08-95d5-9c4f3/cd.js" type="text/javascript"></script>
+      </div>
+    </article>
+  </section>
+</BaseLayout>
