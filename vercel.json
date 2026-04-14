@@ -1,0 +1,40 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/productos", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/methodology/execution", "permanent": true },
+    { "source": "/investigacion", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/methodology", "permanent": true },
+    { "source": "/servicios", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/methodology", "permanent": true },
+    { "source": "/acustica-arquitectonica", "has": [{ "type": "query", "key": "lang", "value": "fr" }], "destination": "/en/projects/architectural-acoustics", "permanent": true },
+    { "source": "/acustica-industrial", "has": [{ "type": "query", "key": "lang", "value": "fr" }], "destination": "/en/projects/industrial-acoustics", "permanent": true },
+    { "source": "/sna-otros-paises", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/sobre-nosotros", "permanent": true },
+    { "source": "/portfolio/hot-air-rises", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/projects", "permanent": true },
+    { "source": "/project-attributes/branding-en", "has": [{ "type": "query", "key": "lang", "value": "en" }], "destination": "/en/projects", "permanent": true },
+
+    { "source": "/productos", "destination": "/metodologia/ejecucion", "permanent": true },
+    { "source": "/nosotros", "destination": "/sobre-nosotros", "permanent": true },
+    { "source": "/servicios", "destination": "/metodologia", "permanent": true },
+    { "source": "/privacidad", "destination": "/politica-de-privacidad", "permanent": true },
+    { "source": "/investigacion", "destination": "/metodologia", "permanent": true },
+    { "source": "/portfolio/sunflower", "destination": "/proyectos", "permanent": true },
+    { "source": "/the-field", "destination": "/proyectos", "permanent": true },
+    { "source": "/acustica-industrial", "destination": "/proyectos/acustica-industrial", "permanent": true },
+    { "source": "/acustica-arquitectonica", "destination": "/proyectos/acustica-arquitectonica", "permanent": true },
+    { "source": "/portfolio/servicios", "destination": "/proyectos", "permanent": true },
+    { "source": "/portfolio/dark-water", "destination": "/proyectos", "permanent": true },
+    { "source": "/velit-feugiat-porttito", "destination": "/proyectos", "permanent": true },
+    { "source": "/ink-in-water", "destination": "/proyectos", "permanent": true },
+    { "source": "/acustica-medio-ambiente", "destination": "/proyectos/acustica-medioambiental", "permanent": true },
+    { "source": "/colabora-con-nosotros", "destination": "/contacto", "permanent": true },
+    { "source": "/project-attributes/illustration", "destination": "/proyectos", "permanent": true },
+    { "source": "/ownage-in-the-mountains", "destination": "/proyectos", "permanent": true },
+    { "source": "/portfolio/hot-air-rises", "destination": "/proyectos", "permanent": true },
+    { "source": "/magna-fringilla-quis-condimentum", "destination": "/proyectos", "permanent": true },
+    { "source": "/mauris-pharetra-interdum-lorem-2", "destination": "/proyectos", "permanent": true },
+    { "source": "/porttitor-porttitor-mollis-vitae-placerat", "destination": "/proyectos", "permanent": true },
+    { "source": "/project-attributes/branding-en", "destination": "/proyectos", "permanent": true },
+    { "source": "/sna-otros-paises", "destination": "/sobre-nosotros", "permanent": true },
+
+    { "source": "/video-post", "destination": "/", "permanent": true },
+    { "source": "/tag/wordpress", "destination": "/", "permanent": true }
+  ]
+}
