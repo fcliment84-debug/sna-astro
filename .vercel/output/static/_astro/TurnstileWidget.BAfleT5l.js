@@ -1,1 +1,0 @@
-import"./jsx-runtime.u17CrQMm.js";import{r as e}from"./index.D0zW3GPc.js";function f({onVerify:t,lang:r="es"}){e.useRef(null),e.useRef(!1);const[s,u]=e.useState(!1);return e.useEffect(()=>{{t("");return}},[]),null}export{f as T};
