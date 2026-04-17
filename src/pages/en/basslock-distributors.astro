@@ -2,6 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { breadcrumbSchema } from "../../data/schemas";
 
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
 const basslockBrand = `<span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>`;
 
 const title = "Basslock® Distribution Programme | SNA Consultoría Acústica";
@@ -258,6 +260,10 @@ const regionOptions = [
 
         <!-- PRIVACY + SUBMIT -->
         <div class="border-t border-bl-blue/10 pt-10 space-y-6">
+          {TURNSTILE_SITE_KEY && (
+            <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="light" data-language="en"></div>
+          )}
+
           <label class="flex items-start gap-3 cursor-pointer group">
             <input type="checkbox" name="privacy" required
               class="w-4 h-4 mt-0.5 border-bl-blue/30 text-bl-blue focus:ring-bl-blue/20 accent-bl-blue" />
@@ -315,6 +321,8 @@ const regionOptions = [
           if (hp && hp.value) return;
 
           const fd = new FormData(form);
+          // Turnstile injects a hidden input named "cf-turnstile-response"
+          const turnstileToken = (fd.get('cf-turnstile-response') as string) || '';
           const payload = {
             company: fd.get('company'),
             website: fd.get('website'),
@@ -330,6 +338,8 @@ const regionOptions = [
             has_project: fd.get('has_project'),
             project_description: fd.get('project_description'),
             source: fd.get('source'),
+            website_url: fd.get('website_url'), // honeypot
+            turnstileToken,
           };
 
           if (submitBtn) submitBtn.disabled = true;

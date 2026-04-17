@@ -2,6 +2,14 @@ export const prerender = false;
 
 import type { APIRoute } from "astro";
 import { Resend } from "resend";
+import {
+  escapeHtml,
+  escapeHtmlList,
+  isAllowedOrigin,
+  getClientIp,
+  rateLimitOk,
+  verifyTurnstile,
+} from "../../lib/api-security";
 
 const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
@@ -12,6 +20,23 @@ const TO_ADDRESSES = [
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    // ── Security: origin allowlist ─────────────────────────────
+    if (!isAllowedOrigin(request)) {
+      return new Response(JSON.stringify({ error: "forbidden" }), {
+        status: 403,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    // ── Security: per-IP rate limit ───────────────────────────
+    const ip = getClientIp(request);
+    if (!rateLimitOk(ip)) {
+      return new Response(JSON.stringify({ error: "too many requests" }), {
+        status: 429,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
     const body = await request.json();
     const {
       company,
@@ -28,7 +53,26 @@ export const POST: APIRoute = async ({ request }) => {
       has_project,
       project_description,
       source,
+      website_url,    // honeypot
+      turnstileToken,
     } = body;
+
+    // ── Security: honeypot ───────────────────────────────────
+    if (website_url) {
+      return new Response(JSON.stringify({ success: true }), {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    // ── Security: Turnstile verification ─────────────────────
+    const turnstileOk = await verifyTurnstile(turnstileToken, ip);
+    if (!turnstileOk) {
+      return new Response(JSON.stringify({ error: "verification failed" }), {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
 
     if (!company || !contact_name || !email || !phone || !region) {
       return new Response(
@@ -37,9 +81,21 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Helper: format array as comma-separated or "—"
-    const list = (arr: string[] | undefined) =>
-      arr && arr.length > 0 ? arr.join(", ") : "—";
+    // ── Escape every user-supplied value before HTML interpolation ──
+    const eCompany = escapeHtml(company);
+    const eWebsite = escapeHtml(website);
+    const eContact = escapeHtml(contact_name);
+    const eEmail = escapeHtml(email);
+    const ePhone = escapeHtml(phone);
+    const eRegion = escapeHtml(region);
+    const eTechCap = escapeHtml(technical_capacity);
+    const eVolume = escapeHtml(volume);
+    const eHasProj = escapeHtml(has_project);
+    const eProjDesc = escapeHtml(project_description);
+    const eSource = escapeHtml(source);
+
+    // Helper: escaped comma-joined list or "—" for empty arrays
+    const list = (arr: string[] | undefined) => escapeHtmlList(arr);
 
     // ── Internal notification email (prepare promise, await later) ──
     const internalEmailPromise = resend.emails.send({
@@ -58,24 +114,24 @@ export const POST: APIRoute = async ({ request }) => {
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
               <tr>
                 <td style="padding: 6px 0; font-weight: 600; width: 160px; vertical-align: top;">Empresa</td>
-                <td style="padding: 6px 0;">${company}</td>
+                <td style="padding: 6px 0;">${eCompany}</td>
               </tr>
-              ${website ? `<tr><td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Web</td><td style="padding: 6px 0;"><a href="${website}" style="color: #4F7E87;">${website}</a></td></tr>` : ""}
+              ${website ? `<tr><td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Web</td><td style="padding: 6px 0;">${eWebsite}</td></tr>` : ""}
               <tr>
                 <td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Persona de contacto</td>
-                <td style="padding: 6px 0;">${contact_name}</td>
+                <td style="padding: 6px 0;">${eContact}</td>
               </tr>
               <tr>
                 <td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Email</td>
-                <td style="padding: 6px 0;"><a href="mailto:${email}" style="color: #4F7E87;">${email}</a></td>
+                <td style="padding: 6px 0;"><a href="mailto:${eEmail}" style="color: #4F7E87;">${eEmail}</a></td>
               </tr>
               <tr>
                 <td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Teléfono</td>
-                <td style="padding: 6px 0;"><a href="tel:${phone}" style="color: #4F7E87;">${phone}</a></td>
+                <td style="padding: 6px 0;"><a href="tel:${ePhone}" style="color: #4F7E87;">${ePhone}</a></td>
               </tr>
               <tr>
                 <td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Comunidad / Región</td>
-                <td style="padding: 6px 0;">${region}</td>
+                <td style="padding: 6px 0;">${eRegion}</td>
               </tr>
             </table>
 
@@ -91,11 +147,11 @@ export const POST: APIRoute = async ({ request }) => {
               </tr>
               <tr>
                 <td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Capacidad técnica</td>
-                <td style="padding: 6px 0;">${technical_capacity || "—"}</td>
+                <td style="padding: 6px 0;">${eTechCap || "—"}</td>
               </tr>
               <tr>
                 <td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Proyectos/año</td>
-                <td style="padding: 6px 0;">${volume || "—"}</td>
+                <td style="padding: 6px 0;">${eVolume || "—"}</td>
               </tr>
             </table>
 
@@ -107,12 +163,12 @@ export const POST: APIRoute = async ({ request }) => {
               </tr>
               <tr>
                 <td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Proyecto concreto</td>
-                <td style="padding: 6px 0;">${has_project || "—"}</td>
+                <td style="padding: 6px 0;">${eHasProj || "—"}</td>
               </tr>
-              ${project_description ? `<tr><td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Descripción</td><td style="padding: 6px 0; white-space: pre-wrap; line-height: 1.5;">${project_description}</td></tr>` : ""}
+              ${project_description ? `<tr><td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Descripción</td><td style="padding: 6px 0; white-space: pre-wrap; line-height: 1.5;">${eProjDesc}</td></tr>` : ""}
               <tr>
                 <td style="padding: 6px 0; font-weight: 600; vertical-align: top;">Fuente</td>
-                <td style="padding: 6px 0;">${source || "—"}</td>
+                <td style="padding: 6px 0;">${eSource || "—"}</td>
               </tr>
             </table>
 
@@ -125,7 +181,7 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     // ── Confirmation email to the applicant (awaited via Promise.allSettled) ─
-    const firstName = contact_name.split(" ")[0];
+    const firstName = escapeHtml(contact_name.split(" ")[0]);
 
     const confirmationEmailPromise = resend.emails.send({
       from: "SNA Consultoría Acústica <web@snaconsultoriaacustica.com>",
@@ -146,7 +202,7 @@ export const POST: APIRoute = async ({ request }) => {
               <table style="width: 100%; border-collapse: collapse; margin-top: 12px;">
                 <tr>
                   <td style="padding: 4px 0; font-weight: 600; width: 120px; vertical-align: top; font-size: 14px;">Empresa</td>
-                  <td style="padding: 4px 0; font-size: 14px;">${company}</td>
+                  <td style="padding: 4px 0; font-size: 14px;">${eCompany}</td>
                 </tr>
                 <tr>
                   <td style="padding: 4px 0; font-weight: 600; vertical-align: top; font-size: 14px;">Productos</td>
@@ -154,7 +210,7 @@ export const POST: APIRoute = async ({ request }) => {
                 </tr>
                 <tr>
                   <td style="padding: 4px 0; font-weight: 600; vertical-align: top; font-size: 14px;">Región</td>
-                  <td style="padding: 4px 0; font-size: 14px;">${region}</td>
+                  <td style="padding: 4px 0; font-size: 14px;">${eRegion}</td>
                 </tr>
               </table>
             </div>

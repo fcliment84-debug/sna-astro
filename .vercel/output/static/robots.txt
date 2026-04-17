@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://snaconsultoriaacustica.com/sitemap-index.xml

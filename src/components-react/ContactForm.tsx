@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TurnstileWidget from "./TurnstileWidget";
 
 interface Props {
   lang?: "es" | "en";
@@ -73,6 +74,8 @@ export default function ContactForm({ lang = "es" }: Props) {
   });
   const [acceptPrivacy, setAcceptPrivacy] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [honeypot, setHoneypot] = useState(""); // bots fill this
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -88,7 +91,11 @@ export default function ContactForm({ lang = "es" }: Props) {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          website_url: honeypot,
+          turnstileToken,
+        }),
       });
       if (res.ok) {
         window.location.href = lang === "en" ? "/en/form-sent" : "/formulario-enviado";
@@ -103,6 +110,20 @@ export default function ContactForm({ lang = "es" }: Props) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Honeypot — hidden from humans, bots fill it, backend rejects */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-5000px", top: "-5000px" }}>
+        <label htmlFor="cf-website-url">Website URL</label>
+        <input
+          id="cf-website-url"
+          type="text"
+          name="website_url"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="cf-nombre" className="block text-sm font-medium mb-1.5">{t.name}</label>
@@ -160,6 +181,9 @@ export default function ContactForm({ lang = "es" }: Props) {
           </a>
         </label>
       </div>
+
+      {/* Cloudflare Turnstile — anti-bot verification */}
+      <TurnstileWidget onVerify={setTurnstileToken} lang={lang} />
 
       {status === "error" && (
         <p className="text-sm text-red-600 bg-red-50 border border-red-200 p-3">{t.errorMsg}</p>
