@@ -33,7 +33,9 @@ export const POST: APIRoute = async ({ request }) => {
     const tipoLabel = projectTypeLabels[tipoProyecto] || tipoProyecto || "No especificado";
     const nombreCompleto = `${nombre} ${apellidos}`;
 
-    const { error } = await resend.emails.send({
+    // Send both emails in parallel — await both to guarantee delivery
+    // before the serverless function terminates.
+    const internalEmailPromise = resend.emails.send({
       from: "SNA Web <web@snaconsultoriaacustica.com>",
       to: TO_ADDRESSES,
       replyTo: email,
@@ -82,16 +84,9 @@ export const POST: APIRoute = async ({ request }) => {
       `,
     });
 
-    if (error) {
-      console.error("Resend error:", error);
-      return new Response(
-        JSON.stringify({ error: "Error al enviar el email" }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
-    }
-
-    // Confirmation email to the user (fire-and-forget — uses only first name)
-    resend.emails.send({
+    // Confirmation email to the user — awaited so the serverless function
+    // doesn't terminate before Resend finishes the send.
+    const confirmationEmailPromise = resend.emails.send({
       from: "SNA Consultoría Acústica <web@snaconsultoriaacustica.com>",
       to: email,
       replyTo: "info@snaconsultoriaacustica.com",
@@ -127,7 +122,27 @@ export const POST: APIRoute = async ({ request }) => {
           </div>
         </div>
       `,
-    }).catch((err) => console.error("Confirmation email error:", err));
+    });
+
+    // Wait for both emails in parallel. The internal one is critical
+    // (fail the request if it errors); the confirmation is best-effort.
+    const [internalResult, confirmationResult] = await Promise.allSettled([
+      internalEmailPromise,
+      confirmationEmailPromise,
+    ]);
+
+    if (internalResult.status === "rejected" || internalResult.value.error) {
+      console.error("Internal email failed:", internalResult);
+      return new Response(
+        JSON.stringify({ error: "Error al enviar el email" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    if (confirmationResult.status === "rejected" || confirmationResult.value.error) {
+      // Log but do not fail: the user's enquiry reached SNA via the internal email.
+      console.error("Confirmation email failed:", confirmationResult);
+    }
 
     return new Response(
       JSON.stringify({ success: true }),

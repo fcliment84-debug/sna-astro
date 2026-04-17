@@ -41,8 +41,8 @@ export const POST: APIRoute = async ({ request }) => {
     const list = (arr: string[] | undefined) =>
       arr && arr.length > 0 ? arr.join(", ") : "—";
 
-    // ── Internal notification email ──────────────────────────────
-    const { error } = await resend.emails.send({
+    // ── Internal notification email (prepare promise, await later) ──
+    const internalEmailPromise = resend.emails.send({
       from: "SNA Web <web@snaconsultoriaacustica.com>",
       to: TO_ADDRESSES,
       replyTo: email,
@@ -124,18 +124,10 @@ export const POST: APIRoute = async ({ request }) => {
       `,
     });
 
-    if (error) {
-      console.error("Resend error:", error);
-      return new Response(
-        JSON.stringify({ error: "Error al enviar el email" }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
-    }
-
-    // ── Confirmation email to the applicant (fire-and-forget) ────
+    // ── Confirmation email to the applicant (awaited via Promise.allSettled) ─
     const firstName = contact_name.split(" ")[0];
 
-    resend.emails.send({
+    const confirmationEmailPromise = resend.emails.send({
       from: "SNA Consultoría Acústica <web@snaconsultoriaacustica.com>",
       to: email,
       replyTo: "info@snaconsultoriaacustica.com",
@@ -176,7 +168,26 @@ export const POST: APIRoute = async ({ request }) => {
           </div>
         </div>
       `,
-    }).catch((err) => console.error("Distributor confirmation email error:", err));
+    });
+
+    // Wait for both emails in parallel. The internal one is critical;
+    // the confirmation is best-effort (log if it fails but still return 200).
+    const [internalResult, confirmationResult] = await Promise.allSettled([
+      internalEmailPromise,
+      confirmationEmailPromise,
+    ]);
+
+    if (internalResult.status === "rejected" || internalResult.value.error) {
+      console.error("Distributor internal email failed:", internalResult);
+      return new Response(
+        JSON.stringify({ error: "Error al enviar el email" }),
+        { status: 500, headers: { "Content-Type": "application/json" } }
+      );
+    }
+
+    if (confirmationResult.status === "rejected" || confirmationResult.value.error) {
+      console.error("Distributor confirmation email failed:", confirmationResult);
+    }
 
     return new Response(
       JSON.stringify({ success: true }),
