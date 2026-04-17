@@ -39,30 +39,6 @@
       "statusCode": 301
     },
     {
-      "source": "/acustica-arquitectonica",
-      "has": [
-        {
-          "type": "query",
-          "key": "lang",
-          "value": "fr"
-        }
-      ],
-      "destination": "/en/projects/architectural-acoustics",
-      "statusCode": 301
-    },
-    {
-      "source": "/acustica-industrial",
-      "has": [
-        {
-          "type": "query",
-          "key": "lang",
-          "value": "fr"
-        }
-      ],
-      "destination": "/en/projects/industrial-acoustics",
-      "statusCode": 301
-    },
-    {
       "source": "/sna-otros-paises",
       "has": [
         {
@@ -96,6 +72,258 @@
         }
       ],
       "destination": "/en/projects",
+      "statusCode": 301
+    },
+    {
+      "source": "/acustica-arquitectonica",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/projects/architectural-acoustics",
+      "statusCode": 301
+    },
+    {
+      "source": "/acustica-industrial",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/projects/industrial-acoustics",
+      "statusCode": 301
+    },
+    {
+      "source": "/nosotros",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/contacto",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/acustica-industrial",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en/projects/industrial-acoustics",
+      "statusCode": 301
+    },
+    {
+      "source": "/acustica-arquitectonica",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en/projects/architectural-acoustics",
+      "statusCode": 301
+    },
+    {
+      "source": "/acustica-medio-ambiente",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en/projects/environmental-acoustics",
+      "statusCode": 301
+    },
+    {
+      "source": "/home",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en",
+      "statusCode": 301
+    },
+    {
+      "source": "/nosotros",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/about",
+      "statusCode": 301
+    },
+    {
+      "source": "/contacto",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/productos",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/methodology/execution",
+      "statusCode": 301
+    },
+    {
+      "source": "/investigacion",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/methodology",
+      "statusCode": 301
+    },
+    {
+      "source": "/servicios",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/methodology",
+      "statusCode": 301
+    },
+    {
+      "source": "/acustica-medio-ambiente",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/projects/environmental-acoustics",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en/projects",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/projects",
+      "statusCode": 301
+    },
+    {
+      "source": "/project-type/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en/projects",
+      "statusCode": 301
+    },
+    {
+      "source": "/project-type/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/projects",
+      "statusCode": 301
+    },
+    {
+      "source": "/project-attributes/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "en"
+        }
+      ],
+      "destination": "/en/projects",
+      "statusCode": 301
+    },
+    {
+      "source": "/project-attributes/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en/projects",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "query",
+          "key": "lang",
+          "value": "fr"
+        }
+      ],
+      "destination": "/en",
       "statusCode": 301
     },
     {
@@ -124,16 +352,6 @@
       "statusCode": 301
     },
     {
-      "source": "/portfolio/sunflower",
-      "destination": "/proyectos",
-      "statusCode": 301
-    },
-    {
-      "source": "/the-field",
-      "destination": "/proyectos",
-      "statusCode": 301
-    },
-    {
       "source": "/acustica-industrial",
       "destination": "/proyectos/acustica-industrial",
       "statusCode": 301
@@ -141,26 +359,6 @@
     {
       "source": "/acustica-arquitectonica",
       "destination": "/proyectos/acustica-arquitectonica",
-      "statusCode": 301
-    },
-    {
-      "source": "/portfolio/servicios",
-      "destination": "/proyectos",
-      "statusCode": 301
-    },
-    {
-      "source": "/portfolio/dark-water",
-      "destination": "/proyectos",
-      "statusCode": 301
-    },
-    {
-      "source": "/velit-feugiat-porttito",
-      "destination": "/proyectos",
-      "statusCode": 301
-    },
-    {
-      "source": "/ink-in-water",
-      "destination": "/proyectos",
       "statusCode": 301
     },
     {
@@ -174,17 +372,22 @@
       "statusCode": 301
     },
     {
-      "source": "/project-attributes/illustration",
+      "source": "/sna-otros-paises",
+      "destination": "/sobre-nosotros",
+      "statusCode": 301
+    },
+    {
+      "source": "/velit-feugiat-porttito",
+      "destination": "/proyectos",
+      "statusCode": 301
+    },
+    {
+      "source": "/ink-in-water",
       "destination": "/proyectos",
       "statusCode": 301
     },
     {
       "source": "/ownage-in-the-mountains",
-      "destination": "/proyectos",
-      "statusCode": 301
-    },
-    {
-      "source": "/portfolio/hot-air-rises",
       "destination": "/proyectos",
       "statusCode": 301
     },
@@ -204,13 +407,88 @@
       "statusCode": 301
     },
     {
-      "source": "/project-attributes/branding-en",
+      "source": "/porttitor-porttitor-mollis-vitae-placerat-2",
       "destination": "/proyectos",
       "statusCode": 301
     },
     {
-      "source": "/sna-otros-paises",
-      "destination": "/sobre-nosotros",
+      "source": "/the-field",
+      "destination": "/proyectos",
+      "statusCode": 301
+    },
+    {
+      "source": "/portfolio/:path*",
+      "destination": "/proyectos",
+      "statusCode": 301
+    },
+    {
+      "source": "/project-type/:path*",
+      "destination": "/proyectos",
+      "statusCode": 301
+    },
+    {
+      "source": "/project-attributes/:path*",
+      "destination": "/proyectos",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/tag/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/category/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/home/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-default/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/comments/:path*",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/hola-mundo",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/be-my-guest",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/nulla-magna",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/home",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/home-default",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/red-quote",
+      "destination": "/proyectos",
       "statusCode": 301
     },
     {
@@ -219,8 +497,8 @@
       "statusCode": 301
     },
     {
-      "source": "/tag/wordpress",
-      "destination": "/",
+      "source": "/en/aviso-legal",
+      "destination": "/en/legal-notice",
       "statusCode": 301
     }
   ]

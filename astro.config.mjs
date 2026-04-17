@@ -8,6 +8,7 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://snaconsultoriaacustica.com',
   output: 'static',
+  trailingSlash: 'never',
   adapter: vercel(),
   // 301 redirects from legacy WordPress URLs are configured in vercel.json
   integrations: [
