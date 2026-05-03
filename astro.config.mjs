@@ -14,7 +14,11 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !page.includes('/en/'),
+      // Exclude "thank you" pages that are noindex; everything else (ES + EN) is indexable
+      filter: (page) =>
+        !/\/(formulario-enviado|basslock-solicitud-enviada|form-sent|basslock-application-sent)\/?$/.test(
+          page,
+        ),
       i18n: {
         defaultLocale: 'es',
         locales: { es: 'es-ES', en: 'en-GB' },

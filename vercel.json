@@ -500,6 +500,16 @@
       "source": "/en/aviso-legal",
       "destination": "/en/legal-notice",
       "statusCode": 301
+    },
+    {
+      "source": "/feed",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path*/feed",
+      "destination": "/",
+      "statusCode": 301
     }
   ]
 }
