@@ -1,0 +1,258 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { breadcrumbSchema } from "../data/schemas";
+
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
+const basslockBrand = `<span class="font-extrabold italic">Basslock<sup style="font-size:40%;vertical-align:super;font-style:italic">®</sup></span>`;
+
+const title = "Descargar dossier Basslock® | SNA Consultoría Acústica";
+const description = "Acceda al dossier técnico del sistema Basslock®, el metamaterial patentado de SNA para aislamiento acústico en baja frecuencia con paso de aire.";
+const canonical = "https://snaconsultoriaacustica.com/basslock-dossier";
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: "Inicio", url: "/" },
+    { name: "Basslock", url: "/basslock" },
+    { name: "Descargar dossier" },
+  ]),
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonLd={jsonLd}
+  hideHeaderSpacer={true}
+>
+  <!-- HERO -->
+  <section class="relative bg-bl-blue flex items-end overflow-hidden">
+    <div
+      class="absolute inset-0 bg-cover bg-center opacity-[0.08] pointer-events-none"
+      style="background-image: url('/images/basslock/hero-bg.webp')"
+    ></div>
+    <div class="relative max-w-[900px] mx-auto px-6 lg:px-8 pt-28 pb-14 lg:pt-36 lg:pb-20 w-full">
+      <a href="/basslock" class="inline-block mb-8 group">
+        <img src="/images/basslock/logo-horizontal-negativo-new.webp" alt="Basslock®" class="h-16 lg:h-20 w-auto opacity-80 group-hover:opacity-100 transition-opacity" />
+      </a>
+
+      <h1 class="text-2xl lg:text-[40px] font-semibold text-white max-w-[700px] leading-[1.15] tracking-tight">
+        Descargar dossier técnico
+      </h1>
+
+      <p class="mt-6 text-[15px] text-white/65 max-w-[600px] leading-relaxed">
+        El dossier de <span set:html={basslockBrand} class="text-white" /> recoge los principios físicos del sistema, los datos técnicos verificados en cámara acústica y las aplicaciones por sector. Indique sus datos para acceder a la descarga inmediata.
+      </p>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="py-16 lg:py-24 bg-bl-neutral">
+    <div class="max-w-[560px] mx-auto px-6 lg:px-8">
+
+      <!-- Estado: éxito (oculto por defecto) -->
+      <div id="dossier-success" class="hidden">
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-bl-lime/15 mb-6">
+            <svg class="w-8 h-8 text-bl-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+
+          <h2 class="text-xl lg:text-2xl font-semibold text-bl-blue mb-3">Dossier en camino</h2>
+          <p class="text-[15px] text-bl-blue/75 leading-relaxed mb-2">La descarga debería iniciarse automáticamente.</p>
+          <p class="text-[15px] text-bl-blue/75 leading-relaxed mb-10">Si no se inicia, puede descargarlo manualmente desde el siguiente enlace:</p>
+
+          <a
+            id="dossier-manual-link"
+            href="/downloads/basslock-dossier-es.pdf"
+            download
+            class="group inline-flex items-center justify-center bg-bl-blue text-white px-8 py-4 text-sm font-medium rounded-none hover:bg-bl-lime hover:text-bl-blue transition-all duration-200"
+          >
+            <span class="transition-transform duration-200 group-hover:-translate-x-1">Descargar dossier (PDF)</span>
+            <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&darr;</span>
+          </a>
+
+          <div class="mt-12 pt-8 border-t border-bl-blue/10">
+            <a href="/basslock" class="text-sm text-bl-blue/60 hover:text-bl-blue transition-colors">
+              ← Volver a Basslock
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Estado: formulario -->
+      <form id="dossier-form" class="space-y-10" novalidate>
+
+        <!-- Honeypot -->
+        <div class="hidden" aria-hidden="true">
+          <label for="website_url">Website</label>
+          <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <fieldset>
+          <legend class="sr-only">Datos para la descarga</legend>
+
+          <div class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label for="first_name" class="block text-sm font-medium text-bl-blue mb-2">Nombre <span class="text-bl-lime">*</span></label>
+                <input type="text" id="first_name" name="first_name" required autocomplete="given-name"
+                  class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue placeholder:text-bl-blue/40 focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors" placeholder="Nombre" />
+              </div>
+              <div>
+                <label for="last_name" class="block text-sm font-medium text-bl-blue mb-2">Apellidos <span class="text-bl-lime">*</span></label>
+                <input type="text" id="last_name" name="last_name" required autocomplete="family-name"
+                  class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue placeholder:text-bl-blue/40 focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors" placeholder="Apellidos" />
+              </div>
+            </div>
+
+            <div>
+              <label for="email" class="block text-sm font-medium text-bl-blue mb-2">Email profesional <span class="text-bl-lime">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email"
+                class="w-full border border-bl-blue/15 bg-white px-4 py-3 text-sm text-bl-blue placeholder:text-bl-blue/40 focus:outline-none focus:border-bl-blue/50 focus:ring-1 focus:ring-bl-blue/20 transition-colors" placeholder="nombre@empresa.com" />
+              <p class="mt-2 text-xs text-bl-blue/55 leading-relaxed">No se aceptan cuentas de correo personales (Gmail, Hotmail, Outlook, Yahoo, etc.).</p>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="border-t border-bl-blue/10 pt-8 space-y-6">
+          {TURNSTILE_SITE_KEY && (
+            <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="light" data-language="es"></div>
+          )}
+
+          <label class="flex items-start gap-3 cursor-pointer group">
+            <input type="checkbox" name="privacy" required
+              class="w-4 h-4 mt-0.5 border-bl-blue/30 text-bl-blue focus:ring-bl-blue/20 accent-bl-blue" />
+            <span class="text-xs text-bl-blue/60 leading-relaxed group-hover:text-bl-blue/80 transition-colors">
+              He leído y acepto la <a href="/politica-de-privacidad" class="underline hover:text-bl-blue transition-colors">política de privacidad</a>. Los datos facilitados serán tratados exclusivamente para gestionar el acceso al dossier de Basslock® y eventuales comunicaciones técnicas relacionadas. <span class="text-bl-lime">*</span>
+            </span>
+          </label>
+
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+            <button type="submit"
+              class="group inline-flex items-center justify-center bg-bl-blue text-white px-8 py-4 text-sm font-medium rounded-none hover:bg-bl-lime hover:text-bl-blue transition-all duration-200 cursor-pointer">
+              <span class="transition-transform duration-200 group-hover:-translate-x-1">Descargar dossier</span>
+              <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">&darr;</span>
+            </button>
+            <a href="/basslock" class="text-sm text-bl-blue/60 hover:text-bl-blue transition-colors">
+              ← Volver a Basslock
+            </a>
+          </div>
+        </div>
+
+        <!-- Mensaje de error inline -->
+        <div id="form-error" class="hidden border border-red-300 bg-red-50 p-5">
+          <p id="form-error-text" class="text-sm text-red-700 leading-relaxed">
+            Ha ocurrido un error al procesar la solicitud. Inténtelo de nuevo o escríbanos a <a href="mailto:info@snaconsultoriaacustica.com" class="underline">info@snaconsultoriaacustica.com</a>
+          </p>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <script>
+    function initDossierForm() {
+      const form = document.getElementById('dossier-form') as HTMLFormElement | null;
+      const successBox = document.getElementById('dossier-success');
+      const manualLink = document.getElementById('dossier-manual-link') as HTMLAnchorElement | null;
+      const errorBox = document.getElementById('form-error');
+      const errorText = document.getElementById('form-error-text');
+      const submitBtn = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const submitLabel = submitBtn?.querySelector('span:first-child');
+
+      const showError = (msg: string) => {
+        if (errorBox && errorText) {
+          errorText.innerHTML = msg;
+          errorBox.classList.remove('hidden');
+          errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      };
+
+      const errorMessages: Record<string, string> = {
+        invalid_email_domain:
+          'Por favor, utilice un email profesional. No se aceptan cuentas personales (Gmail, Hotmail, Outlook, Yahoo, etc.).',
+        invalid_email: 'El email introducido no es válido.',
+        missing_fields: 'Por favor, complete todos los campos obligatorios.',
+        turnstile_failed:
+          'No hemos podido verificar que es usted humano. Recargue la página e inténtelo de nuevo.',
+      };
+
+      const triggerDownload = (url: string) => {
+        // Use a hidden anchor with `download` to bypass pop-up blockers and
+        // force the browser to download instead of opening the PDF inline.
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = '';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      };
+
+      if (!form) return;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        const hp = form.querySelector<HTMLInputElement>('[name="website_url"]');
+        if (hp && hp.value) return;
+
+        const fd = new FormData(form);
+        const turnstileToken = (fd.get('cf-turnstile-response') as string) || '';
+        const payload = {
+          first_name: fd.get('first_name'),
+          last_name: fd.get('last_name'),
+          email: fd.get('email'),
+          lang: 'es',
+          website_url: fd.get('website_url'),
+          turnstileToken,
+        };
+
+        if (submitBtn) submitBtn.disabled = true;
+        if (submitLabel) submitLabel.textContent = 'Procesando...';
+        if (errorBox) errorBox.classList.add('hidden');
+
+        try {
+          const res = await fetch('/api/basslock-dossier', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json().catch(() => ({}));
+
+          if (res.ok && data.success && data.downloadUrl) {
+            // Switch to success state, then trigger the download.
+            form.classList.add('hidden');
+            if (manualLink) manualLink.href = data.downloadUrl;
+            successBox?.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Pequeño delay para que el cambio de UI se vea antes de la descarga.
+            setTimeout(() => triggerDownload(data.downloadUrl), 250);
+            return;
+          }
+
+          const code = (data && data.code) as string | undefined;
+          showError(errorMessages[code || ''] ||
+            'Ha ocurrido un error al procesar la solicitud. Inténtelo de nuevo o escríbanos a <a href="mailto:info@snaconsultoriaacustica.com" class="underline">info@snaconsultoriaacustica.com</a>');
+        } catch {
+          showError('Ha ocurrido un error de conexión. Inténtelo de nuevo en unos segundos.');
+        } finally {
+          if (submitBtn) submitBtn.disabled = false;
+          if (submitLabel) submitLabel.textContent = 'Descargar dossier';
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDossierForm);
+    } else {
+      initDossierForm();
+    }
+  </script>
+</BaseLayout>

@@ -55,6 +55,11 @@ export function isAllowedOrigin(request: Request): boolean {
   if (ALLOWED_ORIGIN_EXACT.has(origin)) return true;
   // Vercel preview URLs: https://sna-astro-<hash>-<scope>.vercel.app
   if (/^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin)) return true;
+  // Local dev only: allow localhost / 127.0.0.1 so forms are testable before deploy.
+  // import.meta.env.DEV is true only under `astro dev`; never in production builds.
+  if (import.meta.env.DEV && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(origin)) {
+    return true;
+  }
   return false;
 }
 
