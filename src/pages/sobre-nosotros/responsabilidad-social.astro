@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import InteriorHero from "../../components/interior/InteriorHero.astro";
+import InteriorCTA from "../../components/interior/InteriorCTA.astro";
+import { breadcrumbSchema } from "../../data/schemas";
+
+const lang = "es";
+
+const jsonLd = breadcrumbSchema([
+  { name: "Inicio", url: "/" },
+  { name: "Sobre SNA", url: "/sobre-nosotros" },
+  { name: "Responsabilidad social" },
+]);
+
+const principios = [
+  "Flexibilidad con responsabilidad",
+  "Equidad entre roles",
+  "Planificación obligatoria",
+  "Compensación justa",
+];
+---
+
+<BaseLayout
+  title="Responsabilidad social — Política EFR | SNA Consultoría Acústica"
+  description="SNA hace público su compromiso con el modelo Empresa Familiarmente Responsable (EFR): política interna de conciliación, flexibilidad y compensación adaptada a la consultoría acústica."
+  canonical="https://snaconsultoriaacustica.com/sobre-nosotros/responsabilidad-social"
+  jsonLd={jsonLd}
+  lang={lang}
+>
+  <InteriorHero
+    compact
+    breadcrumbs={[
+      { label: "Inicio", href: "/" },
+      { label: "Sobre SNA", href: "/sobre-nosotros" },
+      { label: "Responsabilidad social" },
+    ]}
+    title="Responsabilidad social"
+    subtitle="El compromiso de SNA con las personas que forman la empresa, hecho público y verificable. Esta sección recoge las políticas y documentos que materializan ese compromiso."
+    bgImage="/images/responsabilidad-social.png"
+    lang={lang}
+  />
+
+  <!-- Intro -->
+  <section class="py-16 lg:py-20 bg-background">
+    <div class="max-w-[760px] mx-auto px-6 lg:px-8">
+      <p class="text-[15px] text-sna-text leading-relaxed">
+        La responsabilidad social en SNA empieza por dentro: por las condiciones reales en las que el equipo desarrolla su trabajo, por la organización del tiempo y por el reconocimiento de los esfuerzos que la actividad técnica exige. Lo que sigue es la primera pieza de este compromiso, hecha pública para quien la quiera consultar.
+      </p>
+    </div>
+  </section>
+
+  <!-- Bloque EFR -->
+  <section class="py-16 lg:py-24 bg-sna-gray-bg border-t border-sna-gray-line">
+    <div class="max-w-[900px] mx-auto px-6 lg:px-8">
+
+      <div class="grid grid-cols-1 lg:grid-cols-[180px_1fr] gap-10 lg:gap-14 items-start">
+
+        <!-- Logo EFR -->
+        <div class="shrink-0">
+          <img
+            src="/images/efr-logo.png"
+            alt="Empresa Familiarmente Responsable"
+            class="w-32 lg:w-40 h-auto"
+            width="160"
+            height="100"
+          />
+        </div>
+
+        <!-- Contenido -->
+        <div>
+          <p class="text-xs font-mono uppercase tracking-widest text-sna-teal mb-3">Documento 01</p>
+          <h2 class="text-2xl lg:text-[32px] font-semibold leading-tight text-sna-text mb-6">
+            Política y Protocolo EFR
+          </h2>
+
+          <div class="space-y-5 text-[15px] text-sna-text leading-relaxed mb-8">
+            <p>
+              SNA hace público su compromiso voluntario con el modelo <strong>Empresa Familiarmente Responsable (EFR)</strong> desarrollado por la Fundación Másfamilia. La política, en vigor desde el 11 de mayo de 2026, establece un marco interno de flexibilidad, planificación y compensación adaptado a las particularidades del trabajo en consultoría e ingeniería acústica —combinación de oficina, redacción técnica, mediciones de campo, asistencia a obra y desplazamientos.
+            </p>
+            <p>
+              El documento completo recoge las medidas concretas por perfil profesional, el protocolo de aplicación y los mecanismos de seguimiento.
+            </p>
+          </div>
+
+          <p class="text-xs font-mono uppercase tracking-widest text-sna-teal mb-3">Principios sobre los que se construye</p>
+          <ul class="space-y-2 mb-10">
+            {principios.map((p) => (
+              <li class="flex items-start gap-3 text-[15px] text-sna-text leading-relaxed">
+                <span class="text-sna-accent shrink-0 mt-[10px]" aria-hidden="true">
+                  <svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor"><circle cx="3" cy="3" r="3" /></svg>
+                </span>
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="/downloads/sna-politica-efr.pdf"
+            download
+            class="group inline-flex items-center justify-center bg-primary text-primary-foreground px-7 py-3.5 text-sm font-medium rounded-none hover:bg-sna-accent hover:text-sna-dark transition-all duration-200"
+          >
+            <span class="transition-transform duration-200 group-hover:-translate-x-1">
+              Descargar política EFR (PDF, 28 p.)
+            </span>
+            <span class="max-w-0 overflow-hidden opacity-0 group-hover:max-w-[20px] group-hover:opacity-100 transition-all duration-200 ml-0 group-hover:ml-2">
+              &darr;
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <InteriorCTA
+    title="¿Quieres saber más sobre cómo trabajamos?"
+    buttonLabel="Contactar con SNA"
+    lang={lang}
+  />
+</BaseLayout>
