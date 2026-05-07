@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { localePath, switchPath } from "../data/navigation";
 import BasslockBrand from "./BasslockBrand";
 import MegaMenuPanel from "./MegaMenuPanel";
@@ -7,7 +7,7 @@ import MegaMenuMetodologia from "./MegaMenuMetodologia";
 import MegaMenuProyectos from "./MegaMenuProyectos";
 import MegaMobileMenu from "./MegaMobileMenu";
 
-type PanelKey = "metodologia" | "proyectos" | null;
+type PanelKey = "metodologia" | "proyectos" | "sobre" | null;
 
 let globalSuppressHover = false;
 
@@ -16,6 +16,8 @@ const texts = {
     methodology: "Metodología",
     projects: "Proyectos",
     about: "Sobre SNA",
+    aboutTrayectoria: "Trayectoria",
+    aboutResponsabilidad: "Responsabilidad social",
     contact: "Contacto",
     cta: "Plantear caso técnico",
     openMenu: "Abrir menú",
@@ -25,6 +27,8 @@ const texts = {
     methodology: "Methodology",
     projects: "Projects",
     about: "About SNA",
+    aboutTrayectoria: "Trajectory",
+    aboutResponsabilidad: "Social responsibility",
     contact: "Contact",
     cta: "Submit a technical case",
     openMenu: "Open menu",
@@ -42,8 +46,12 @@ const MegaMenuHeader = ({ lang = "es", currentPath = "/" }: Props) => {
 
   const directLinks = [
     { label: "Basslock", href: "/basslock", custom: true },
-    { label: t.about, href: "/sobre-nosotros" },
     { label: t.contact, href: "/contacto" },
+  ];
+
+  const aboutChildren = [
+    { label: t.aboutTrayectoria, href: "/sobre-nosotros" },
+    { label: t.aboutResponsabilidad, href: "/sobre-nosotros/responsabilidad-social" },
   ];
 
   const [activePanel, setActivePanel] = useState<PanelKey>(null);
@@ -150,17 +158,85 @@ const MegaMenuHeader = ({ lang = "es", currentPath = "/" }: Props) => {
             </svg>
           </a>
 
-          {/* Direct links */}
-          {directLinks.map((link) => (
+          {/* Basslock direct link */}
+          {directLinks
+            .filter((link) => link.custom)
+            .map((link) => (
+              <a
+                key={link.href}
+                href={localePath(link.href, lang)}
+                onMouseEnter={() => openPanel(null)}
+                className="text-sm font-medium tracking-wider text-foreground transition-colors duration-200 hover:text-sna-accent"
+              >
+                <BasslockBrand />
+              </a>
+            ))}
+
+          {/* Sobre SNA — link + simple dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => openPanel("sobre")}
+            onMouseLeave={scheduleClose}
+          >
             <a
-              key={link.href}
-              href={localePath(link.href, lang)}
-              onMouseEnter={() => openPanel(null)}
-              className="text-sm font-medium tracking-wider text-foreground transition-colors duration-200 hover:text-sna-accent"
+              href={localePath("/sobre-nosotros", lang)}
+              onClick={closePanel}
+              className={`text-sm font-medium tracking-wider transition-colors duration-200 hover:text-sna-accent flex items-center gap-1 ${
+                activePanel === "sobre" ? "text-sna-accent" : "text-foreground"
+              }`}
+              aria-haspopup="true"
+              aria-expanded={activePanel === "sobre"}
             >
-              {link.custom ? <BasslockBrand /> : link.label}
+              {t.about}
+              <svg
+                className={`w-3 h-3 transition-transform duration-200 ${activePanel === "sobre" ? "rotate-180" : ""}`}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </a>
-          ))}
+
+            <AnimatePresence>
+              {activePanel === "sobre" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{ duration: 0.15 }}
+                  className="absolute left-0 top-full mt-3 min-w-[220px] bg-background border border-sna-gray-line shadow-sm py-2"
+                  onMouseEnter={cancelClose}
+                  onMouseLeave={scheduleClose}
+                >
+                  {aboutChildren.map((child) => (
+                    <a
+                      key={child.href}
+                      href={localePath(child.href, lang)}
+                      onClick={closePanel}
+                      className="block px-5 py-2.5 text-sm text-foreground hover:text-sna-accent hover:bg-sna-gray-bg transition-colors duration-150"
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Contacto direct link */}
+          {directLinks
+            .filter((link) => !link.custom)
+            .map((link) => (
+              <a
+                key={link.href}
+                href={localePath(link.href, lang)}
+                onMouseEnter={() => openPanel(null)}
+                className="text-sm font-medium tracking-wider text-foreground transition-colors duration-200 hover:text-sna-accent"
+              >
+                {link.label}
+              </a>
+            ))}
 
           {/* Language switcher */}
           <a

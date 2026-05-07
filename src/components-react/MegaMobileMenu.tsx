@@ -13,6 +13,8 @@ const texts = {
     projects: "Proyectos",
     viewAllProjects: "Ver todos los proyectos →",
     about: "Sobre SNA",
+    aboutTrayectoria: "Trayectoria",
+    aboutResponsabilidad: "Responsabilidad social",
     contact: "Contacto",
     cta: "Plantear caso técnico",
   },
@@ -23,6 +25,8 @@ const texts = {
     projects: "Projects",
     viewAllProjects: "View all projects →",
     about: "About SNA",
+    aboutTrayectoria: "Trajectory",
+    aboutResponsabilidad: "Social responsibility",
     contact: "Contact",
     cta: "Submit a technical case",
   },
@@ -174,13 +178,48 @@ const MegaMobileMenu = ({ lang, currentPath, onClose }: Props) => {
           >
             <BasslockBrand />
           </a>
-          <a
-            href={localePath("/sobre-nosotros", lang)}
-            onClick={onClose}
-            className="py-4 border-b border-white/10 text-white text-lg font-medium block"
+
+          {/* Sobre SNA accordion */}
+          <button
+            onClick={() => toggle("sobre")}
+            className="flex items-center justify-between py-4 border-b border-white/10 text-white text-lg font-medium w-full text-left"
+            aria-expanded={openSection === "sobre"}
           >
-            {t.about}
-          </a>
+            <span>{t.about}</span>
+            <svg
+              className={`w-5 h-5 transition-transform duration-200 ${
+                openSection === "sobre" ? "rotate-180" : ""
+              }`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          {openSection === "sobre" && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              className="flex flex-col gap-3 py-4 pl-4"
+            >
+              <a
+                href={localePath("/sobre-nosotros", lang)}
+                onClick={onClose}
+                className="text-white/80 text-base hover:text-sna-accent transition-colors"
+              >
+                {t.aboutTrayectoria}
+              </a>
+              <a
+                href={localePath("/sobre-nosotros/responsabilidad-social", lang)}
+                onClick={onClose}
+                className="text-white/80 text-base hover:text-sna-accent transition-colors"
+              >
+                {t.aboutResponsabilidad}
+              </a>
+            </motion.div>
+          )}
+
           <a
             href={localePath("/contacto", lang)}
             onClick={onClose}
